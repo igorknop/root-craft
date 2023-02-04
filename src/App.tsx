@@ -1,7 +1,6 @@
 import styles from "./App.module.css";
 import Card from "./types/Card";
 import CardElement from "./components/CardElement";
-import TimeTrack from "./components/TimeTrackElement";
 import TokenElement from "./components/TokenElement";
 import { atom, useAtom } from "jotai";
 import { InitialGameState } from "./InitialGameState";
@@ -10,6 +9,10 @@ import { focusAtom } from "jotai-optics";
 
 export const gameAtom  = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) => optic.prop('timeTrack'));
+export const unusedTokensAtom = focusAtom(gameAtom, (optic) => optic.prop('unusedTokens'));
+export const placesAtom = focusAtom(gameAtom, (optic) => optic.prop('places'));
+export const itemsAtom = focusAtom(gameAtom, (optic) => optic.prop('items'));
+
 
 
 
@@ -27,7 +30,7 @@ function App() {
         <div className={styles.tokenList}>
           {game.unusedTokens.map((token) => (
             <TokenElement token={token} key={token.id} onClick={()=>{
-              
+
             }}/>
           ))}
         </div>
