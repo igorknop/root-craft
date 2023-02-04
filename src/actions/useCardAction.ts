@@ -3,6 +3,7 @@ import Action from "../types/Action";
 import Card from "../types/Card";
 import Game from "../types/Game";
 import Token from "../types/Token";
+import earnTokens from "./earnTokens";
 import payTime from "./payTime";
 import payTokens from "./payTokens";
 
@@ -66,9 +67,6 @@ export default function useAction(game: Game, action: Action) {
 
   //compute histograms
   const histograms = computeHistograms(game, action);
-  console.log(histograms);
-  
-
 
   //have what is needed?
   let haveWhatIsNeeded = true;
@@ -78,13 +76,10 @@ export default function useAction(game: Game, action: Action) {
       value >
       (histograms.inBag.get(key) || 0) + (histograms.inHand.get(key) || 0)
     ) {
-      console.log('need:', key, value, 'has:', histograms.inBag.get(key)||0+ histograms.inHand.get(key)||0);
-      
       haveWhatIsNeeded = false;
     }
   });
   if (!haveWhatIsNeeded) {
-    console.log("dont have what is needed");
     return game;
   }
 
@@ -97,16 +92,13 @@ export default function useAction(game: Game, action: Action) {
       value >
       (histograms.inBag.get(key) || 0) + (histograms.inHand.get(key) || 0)
     ) {
-      console.log('consume:', key, value, 'has:', histograms.inBag.get(key)||0+ histograms.inHand.get(key)||0);
       haveWhatIsConsumed = false;
     }
   });
   if (!haveWhatIsConsumed) {
-    console.log("dont have what to consume");
     
     return game;
   }
-  console.log("have what is needed and consumed");
   
 
   const { newCards, unusedTokens } = payTokens(
@@ -114,10 +106,16 @@ export default function useAction(game: Game, action: Action) {
     histograms.consume
   );
   newGame.items = newCards;
-  console.log("unusedTokens", unusedTokens);
-  
   newGame.unusedTokens = [...newGame.unusedTokens, ...unusedTokens].sort();
-  console.log("unusedTokens2", newGame.unusedTokens);
+
+  const ret = earnTokens(
+    newGame,
+    histograms.produce
+  );
+  newGame.items = ret.newItems;
+  
+  newGame.unusedTokens = ret.unusedTokens.sort();
+
 
   newGame.timeTrack = payTime(game.timeTrack, histograms.consume.get("T"));
 

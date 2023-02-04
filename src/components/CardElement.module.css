@@ -11,6 +11,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   transition: all 0.3s ease-out;
   zoom: 0.6;
+  overflow: visible;
 }
 
 .Card[data-type="place"] {
@@ -53,4 +54,6 @@
 .tokens {
   display: flex;
   gap: 1mm;
+  overflow: visible;
+  flex-wrap: wrap;
 }

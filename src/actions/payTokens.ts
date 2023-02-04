@@ -13,10 +13,7 @@ export default function payTokens(cards: Card[], amount: Map<string, number>) {
         if (amount.get(card.id) || 0 > 0) {
           unusedTokens.push(token);
           amount.set(card.id, (amount.get(card.id) || 0) - 1);
-          console.log(card.tokens);
-          
           card.tokens.splice(t, 1);
-          console.log(card.tokens);
         }
       }
     }

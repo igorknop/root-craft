@@ -19,8 +19,6 @@ export const InitialGameState: Game = {
     { time: 8, label: "Night", tokens: [] },
   ],
   unusedTokens: [
-    { id: "HR", type: "hand", name: "Right Hand", player: 1 },
-    { id: "HL", type: "hand", name: "Left Hand", player: 1 },
     { id: "T", type: "time", name: "Player 1 Time", player: 1 },
     { id: "B2", type: "bag", name: "Bag Slot 2", player: 1 },
     { id: "B3", type: "bag", name: "Bag Slot 3", player: 1 },
@@ -47,7 +45,7 @@ export const InitialGameState: Game = {
         },
       ],
       actions: [
-        { consume: ["T", "T", "T", "I1"], produce: ["M1"], needs: ["I1"] },
+        { consume: ["T", "T", "T"], produce: ["I1"], needs: [] },
       ],
       unlocks: ["I1"],
     },
@@ -62,6 +60,8 @@ export const InitialGameState: Game = {
         { id: "B1", type: "bag", name: "Bag Slot 1", player: 1 },
         { id: "C1", type: "chest", name: "Chest 1", player: 1 },
         { id: "C2", type: "chest", name: "Chest 2", player: 1 },
+        { id: "HL", type: "hand", name: "Left Hand", player: 1 },
+
       ],
       actions: [{ consume: ["T"], produce: ["I2"], needs: [] }],
       unlocks: ["I2", "I3"],
@@ -79,7 +79,7 @@ export const InitialGameState: Game = {
           player: 1,
         },
       ],
-      actions: [{ consume: ["T"], produce: ["D1"], needs: [] }],
+      actions: [{ consume: ['T', 'I1'], produce: ["D1"], needs: [] }],
       unlocks: ["I2", "I3"],
     },
   ],
