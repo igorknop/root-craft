@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./TimeTrack.module.css";
+import TokenElement from "./TokenElement";
 
 const MAX_TIME = 12;
 const TIME_SLOTS = [
@@ -25,7 +26,7 @@ export default function TimeTrack({ time }: TimeTrackProps) {
         {TIME_SLOTS.map((slot) => (
           <li className={time === slot.time ? styles.selectedSlot: ""} key={`slot${slot.time}`}>
             <div>{slot.label}</div>
-            <div>{time === slot.time ? "X" : ""}</div>
+            <div>{time === slot.time ? <TokenElement token={{id:'T1'}}/> : ""}</div>
           </li>
         ))}
     </ol>
