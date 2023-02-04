@@ -13,14 +13,14 @@ export default function CardElement({ card }: { card: Card }) {
       </div>
       <div className={styles.actions}>
         {card.actions.map((action, k) => (
-          <ActionElement action={action} key={`${card.id}_act_${k}`} />
+          <ActionElement action={action} key={`${card.id}_act_${k}`} cardKey={card.id} />
         ))}
       </div>
 
       <div className={styles.CardUnlocks}>
         <FaUnlockAlt />
         {card.unlocks.map((item) => (
-          <div>{item}</div>
+          <div key={`${card.id}_ulck_${item}`}>{item}</div>
         ))}
       </div>
       <p className={styles.CardFluffy}>{card.description}</p>
