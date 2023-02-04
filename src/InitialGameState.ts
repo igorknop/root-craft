@@ -29,6 +29,11 @@ export const InitialGameState: Game = {
     { id: "S4", type: "sack", name: "Sack 4", player: 1 },
     { id: "S5", type: "sack", name: "Sack 5", player: 1 },
     { id: "C3", type: "chest", name: "Chest 3", player: 1 },
+    { id: "HR", type: "hand", name: "Right Hand", player: 1 },
+    { id: "B1", type: "bag", name: "Bag Slot 1", player: 1 },
+    { id: "C1", type: "chest", name: "Chest 1", player: 1 },
+    { id: "C2", type: "chest", name: "Chest 2", player: 1 },
+    { id: "HL", type: "hand", name: "Left Hand", player: 1 },
   ],
   places: [
     {
@@ -44,24 +49,19 @@ export const InitialGameState: Game = {
           player: 1,
         },
       ],
-      actions: [
-        { consume: ["T", "T", "T"], produce: ["I1"], needs: [] },
-      ],
+      actions: [{ consume: ["T", "T", "T"], produce: ["I1"], needs: [] }],
       unlocks: ["I1"],
     },
   ],
   items: [
+  ],
+  lockedItems: [
     {
       id: "I1",
       type: "item",
       name: "Wooden Stick",
       description: "a wooden stick that can be very useful.",
       tokens: [
-        { id: "B1", type: "bag", name: "Bag Slot 1", player: 1 },
-        { id: "C1", type: "chest", name: "Chest 1", player: 1 },
-        { id: "C2", type: "chest", name: "Chest 2", player: 1 },
-        { id: "HL", type: "hand", name: "Left Hand", player: 1 },
-
       ],
       actions: [{ consume: ["T"], produce: ["I2"], needs: [] }],
       unlocks: ["I2", "I3"],
@@ -71,16 +71,18 @@ export const InitialGameState: Game = {
       type: "item",
       name: "Wooden Hammer",
       description: "A clumsy wooden hammer.",
-      tokens: [
-        {
-          id: "HR",
-          type: "hand",
-          name: "Right Hand",
-          player: 1,
-        },
-      ],
-      actions: [{ consume: ['T', 'I1'], produce: ["D1"], needs: [] }],
-      unlocks: ["I2", "I3"],
+      tokens: [],
+      actions: [{ consume: ["T", "I1"], produce: ["D1"], needs: [] }],
+      unlocks: ["I3"],
+    },
+    {
+      id: "I3",
+      type: "item",
+      name: "Wooden Table",
+      description: "A sturdy wooden table.",
+      tokens: [],
+      actions: [{ consume: ["T", "I1"], produce: ["D1"], needs: [] }],
+      unlocks: ["I4"],
     },
   ],
 };

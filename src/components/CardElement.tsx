@@ -22,7 +22,7 @@ export default function CardElement({ card }: { card: Card }) {
             key={`${card.id}_act_${k}`}
             cardKey={card.id}
             onClick={() => {
-              setGame((oldgame) => useCardAction(oldgame, action));
+              setGame((oldgame) => useCardAction(oldgame, action, card));
             }}
           />
         ))}

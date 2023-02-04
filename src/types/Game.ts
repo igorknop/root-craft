@@ -8,4 +8,5 @@ export default interface Game {
   unusedTokens: Token[];
   places: Card[];
   items: Card[];
+  lockedItems: Card[];
 }

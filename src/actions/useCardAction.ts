@@ -1,11 +1,10 @@
-import { itemsAtom } from "../App";
 import Action from "../types/Action";
 import Card from "../types/Card";
 import Game from "../types/Game";
-import Token from "../types/Token";
 import earnTokens from "./earnTokens";
 import payTime from "./payTime";
 import payTokens from "./payTokens";
+import unlockItems from "./unlockItems";
 
 function addOrIncrement(histogram: Map<string, number>, key: string) {
   if (histogram.has(key)) {
@@ -62,7 +61,7 @@ function computeHistograms(game: Game, action: Action) {
   };
 }
 
-export default function useAction(game: Game, action: Action) {
+export default function useAction(game: Game, action: Action, card: Card) {
   const newGame = structuredClone(game);
 
   //compute histograms
@@ -100,24 +99,23 @@ export default function useAction(game: Game, action: Action) {
     return game;
   }
   
+  const newGame2 = unlockItems(newGame, card);
+
 
   const { newCards, unusedTokens } = payTokens(
-    newGame.items,
+    newGame2.items,
     histograms.consume
   );
-  newGame.items = newCards;
-  newGame.unusedTokens = [...newGame.unusedTokens, ...unusedTokens].sort();
+  newGame2.items = newCards;
+  newGame2.unusedTokens = [...newGame2.unusedTokens, ...unusedTokens].sort();
 
-  const ret = earnTokens(
-    newGame,
-    histograms.produce
-  );
-  newGame.items = ret.newItems;
+  const ret = earnTokens(newGame2, histograms.produce);
+  newGame2.items = ret.newItems;
   
-  newGame.unusedTokens = ret.unusedTokens.sort();
+  newGame2.unusedTokens = ret.unusedTokens.sort();
 
 
-  newGame.timeTrack = payTime(game.timeTrack, histograms.consume.get("T"));
+  newGame2.timeTrack = payTime(game.timeTrack, histograms.consume.get("T"));
 
-  return newGame;
+  return newGame2;
 }
