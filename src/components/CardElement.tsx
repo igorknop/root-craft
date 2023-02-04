@@ -3,8 +3,12 @@ import ActionElement from "./ActionElement";
 import styles from "./CardElement.module.css";
 import TokenElement from "./TokenElement";
 import { FaUnlockAlt } from "react-icons/fa";
+import useCardAction from "../actions/useCardAction";
+import { gameAtom } from "../App";
+import { useAtom } from "jotai";
 
 export default function CardElement({ card }: { card: Card }) {
+  const [game, setGame]= useAtom(gameAtom);
   return (
     <div className={styles.Card} data-type={card.type}>
       <div className={styles.CardTitle}>
@@ -13,7 +17,10 @@ export default function CardElement({ card }: { card: Card }) {
       </div>
       <div className={styles.actions}>
         {card.actions.map((action, k) => (
-          <ActionElement action={action} key={`${card.id}_act_${k}`} cardKey={card.id} />
+          <ActionElement action={action} key={`${card.id}_act_${k}`} cardKey={card.id} onClick={()=>{
+            console.log("Action clicked", action);
+            setGame((oldgame)=>useCardAction(oldgame, action));
+          }}/>
         ))}
       </div>
 

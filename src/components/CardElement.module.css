@@ -50,3 +50,7 @@
   display: flex;
   gap: 1mm;
 }
+.tokens {
+  display: flex;
+  gap: 1mm;
+}

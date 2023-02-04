@@ -8,6 +8,8 @@
 }
 
 .ActionElementConsume {
+  display: flex;
+  gap: 1mm;
   justify-self: flex-end;
 }
 

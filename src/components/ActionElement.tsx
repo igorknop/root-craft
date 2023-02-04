@@ -2,9 +2,9 @@ import Action from "../types/Action";
 import styles from "./ActionElement.module.css";
 import {ImArrowRight} from "react-icons/im";
 
-export default function ActionElement({ action, cardKey }: { action: Action, cardKey: string }) {
+export default function ActionElement({ action, cardKey, onClick }: { action: Action, cardKey: string, onClick: () => void }) {
   return (
-    <div className={styles.ActionElement}>
+    <div className={styles.ActionElement} onClick={onClick}>
       <div className={styles.ActionElementConsume}>
         {action.consume.map((item,i) => (
           <div key={`${cardKey}_con_${i}`}>{item}</div>
