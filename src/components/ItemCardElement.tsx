@@ -1,4 +1,4 @@
-import Token from '../Token';
+import Token from '../types/Token';
 import styles from './ItemCardElement.module.css';
 import TokenElement from './TokenElement';
 

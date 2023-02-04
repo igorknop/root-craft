@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./App.module.css";
+import Card from "./types/Card";
 import ItemCardElement from "./components/ItemCardElement";
 import PlaceCardElement from "./components/PlaceCardElement";
 import TimeTrack from "./components/TimeTrack";
@@ -24,39 +25,40 @@ const unusedTokens = [
   { id: "C3", name: "Chest 3", player: 1 },
 ];
 
-
+const forest: Card = {
+  id: "F1",
+  name: "The Forest",
+  description: "A dark and foreboding forest.",
+  tokens: [
+    {
+      id: "P",
+      name: "Player 1 Position",
+      player: 1,
+    },
+  ],
+  actions: [{ consume: ["P"], produce: ["M1"], needs: ['I1'] }],
+  unlocks: ["M1"],
+};
 
 function App() {
   return (
     <div className={styles.App}>
-        <h1>Root Craft</h1>
+      <h1>Root Craft</h1>
       <section>
-         <h2>Time Track</h2>
+        <h2>Time Track</h2>
         <TimeTrack time={2} />
       </section>
       <section>
         <h2>Unused Tokens</h2>
         <div className={styles.tokenList}>
-        {unusedTokens.map((token) => (
-          <TokenElement token={token} key={token.id} />
-        ))}
+          {unusedTokens.map((token) => (
+            <TokenElement token={token} key={token.id} />
+          ))}
         </div>
       </section>
       <section>
         <h2>Places</h2>
-        <PlaceCardElement
-          place={{
-            name: "The Forest",
-            description: "A dark and foreboding forest.",
-            tokens: [
-              {
-                id: "P",
-                name: "Player 1 Position",
-                player: 1,
-              },
-            ],
-          }}
-        />
+        <PlaceCardElement place={forest} />
       </section>
       <section>
         <h2>Items</h2>

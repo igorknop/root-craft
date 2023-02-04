@@ -1,6 +1,7 @@
 .PlaceCard {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr 3fr 1fr;
   align-items: center;
   width: 45mm;
   height: 68mm;
@@ -11,4 +12,32 @@
   transition: all 0.3s ease-out;
   cursor: pointer;
   zoom: 0.6;
+}
+
+.PlaceCardTitle {
+  font-size: 0.8em;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+}
+
+.PlaceCardTitle h1{
+  font-size: 1em;
+}
+
+.PlaceCardTitle h2{
+  font-size: 0.8em;
+}
+
+
+
+.PlaceCardFluffy {
+  font-size: 0.6em;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.PlaceCardUnlocks {
+  justify-content: flex-end;
+  display: flex;
+  gap: 1mm;
 }

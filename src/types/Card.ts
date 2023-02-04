@@ -1,10 +1,7 @@
+import Action from "./Action";
 import Token from "./Token";
 
-interface Action {
-  consume: string[];
-  produce: string[];
-  needs: string[];
-}
+
 
 export default interface Card {
   id: string;

@@ -1,0 +1,28 @@
+.ActionElement {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-rows: 2fr 1fr;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
+
+.ActionElementConsume {
+  justify-self: flex-end;
+}
+
+.ActionElementProduce {
+  justify-self: flex-start;
+}
+
+.ActionElementNeeds {
+  display: flex;
+  gap: 1mm;
+  align-self: flex-start;
+  font-size: 0.8em;
+
+  grid-column: 1 / span 3;
+  justify-self: center;
+}
+
+

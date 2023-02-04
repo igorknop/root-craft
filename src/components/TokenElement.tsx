@@ -1,5 +1,5 @@
 import styles from "./TokenElement.module.css";
-import Token from "../Token";
+import Token from "../types/Token";
 
 export default function TokenElement({ token }: {token: Token}) {
   return (
