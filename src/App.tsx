@@ -1,12 +1,16 @@
 import styles from "./App.module.css";
 import Card from "./types/Card";
 import CardElement from "./components/CardElement";
-import TimeTrack from "./components/TimeTrack";
+import TimeTrack from "./components/TimeTrackElement";
 import TokenElement from "./components/TokenElement";
 import { atom, useAtom } from "jotai";
 import { InitialGameState } from "./InitialGameState";
+import TimeTrackElement from "./components/TimeTrackElement";
+import { focusAtom } from "jotai-optics";
 
 export const gameAtom  = atom(InitialGameState);
+export const timeTrackAtom = focusAtom(gameAtom, (optic) => optic.prop('timeTrack'));
+
 
 
 function App() {
@@ -16,13 +20,15 @@ function App() {
       <h1>Root Craft</h1>
       <section>
         <h2>Time Track</h2>
-        <TimeTrack />
+        <TimeTrackElement />
       </section>
       <section>
         <h2>Unused Tokens</h2>
         <div className={styles.tokenList}>
           {game.unusedTokens.map((token) => (
-            <TokenElement token={token} key={token.id} />
+            <TokenElement token={token} key={token.id} onClick={()=>{
+              
+            }}/>
           ))}
         </div>
       </section>

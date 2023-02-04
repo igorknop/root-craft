@@ -26,7 +26,7 @@ export default function CardElement({ card }: { card: Card }) {
       <p className={styles.CardFluffy}>{card.description}</p>
       <div className={styles.tokens}>
         {card.tokens.map((token) => (
-          <TokenElement token={token} key={token.id} />
+          <TokenElement token={token} key={token.id} onClick={()=>{}} />
         ))}
       </div>
     </div>
