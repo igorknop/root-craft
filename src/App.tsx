@@ -1,7 +1,5 @@
-import { useState } from "react";
 import styles from "./App.module.css";
 import Card from "./types/Card";
-import ItemCardElement from "./components/ItemCardElement";
 import PlaceCardElement from "./components/PlaceCardElement";
 import TimeTrack from "./components/TimeTrack";
 import TokenElement from "./components/TokenElement";
@@ -27,6 +25,7 @@ const unusedTokens = [
 
 const forest: Card = {
   id: "F1",
+  type: "place",
   name: "The Forest",
   description: "A dark and foreboding forest.",
   tokens: [
@@ -38,6 +37,22 @@ const forest: Card = {
   ],
   actions: [{ consume: ["P"], produce: ["M1"], needs: ['I1'] }],
   unlocks: ["M1"],
+};
+
+const hammer: Card = {
+  id: "I1",
+  type: "item",
+  name: "Wooden Hammer",
+  description: "A clumsy wooden hammer.",
+  tokens: [
+    {
+      id: "HR",
+      name: "Right Hand",
+      player: 1,
+    },
+  ],
+  actions: [{ consume: ["T"], produce: ["D1"], needs: [] }],
+  unlocks: ["I2", "I3"],
 };
 
 function App() {
@@ -62,18 +77,8 @@ function App() {
       </section>
       <section>
         <h2>Items</h2>
-        <ItemCardElement
-          item={{
-            name: "Wood",
-            description: "A piece of wood.",
-            tokens: [
-              {
-                id: "HL",
-                name: "Left Hand",
-                player: 1,
-              },
-            ],
-          }}
+        <PlaceCardElement
+          place={hammer}
         />
       </section>
     </div>
