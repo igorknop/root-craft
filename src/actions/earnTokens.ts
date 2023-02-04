@@ -25,5 +25,6 @@ export default function earnTokens(game: Game, amount: Map<string, number>) {
       }
     }
   });
+  
   return { newItems, unusedTokens };
 }

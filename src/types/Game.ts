@@ -10,4 +10,5 @@ export default interface Game {
   places: Card[];
   items: Card[];
   lockedItems: Card[];
+  lockedPlaces: Card[];
 }

@@ -9,9 +9,7 @@ export const InitialGameState: Game = {
     {
       time: 3,
       label: "Noon",
-      tokens: [
-        { id: "T", type: "time", name: "Player 1 Position", player: 1 },
-      ],
+      tokens: [{ id: "T", type: "time", name: "Player 1 Position", player: 1 }],
     },
     { time: 4, label: "Afternoon", tokens: [] },
     { time: 5, label: "Dusk", tokens: [] },
@@ -56,7 +54,11 @@ export const InitialGameState: Game = {
           player: 1,
         },
       ],
-      actions: [{ consume: ["T"], produce: ["I1"], needs: [] }],
+      actions: [
+        { consume: ["T"], produce: ["I1"], needs: [] },
+        { consume: ['T','T','T'], produce: ["X"], needs: [] },
+        { consume: ["T"], produce: ["M"], needs: [] },
+      ],
       unlocks: ["I1"],
     },
     {
@@ -64,13 +66,44 @@ export const InitialGameState: Game = {
       type: "place",
       name: "The Forest",
       description: "A dark and foreboding forest.",
-      tokens: [
+      tokens: [],
+      actions: [
+        { consume: ["T", "T", "T"], produce: ["I1"], needs: [] },
+        { consume: ["T", 'T','T'], produce: ["X"], needs: [] },
+        { consume: ["T", 'T'], produce: ["M"], needs: [] },
       ],
-      actions: [{ consume: ["T", "T", "T"], produce: ["I1"], needs: [] }],
       unlocks: ["I1"],
     },
   ],
-  items: [
+  items: [],
+  lockedPlaces: [
+    {
+      id: "F2",
+      type: "place",
+      name: "The Moutain",
+      description: "A rocky step stone wall.",
+      tokens: [],
+      actions: [
+        { consume: ["T", "T", "T",'T'], produce: ["I3"], needs: [] },
+        { consume: ["T", 'T'], produce: ["M"], needs: [] },
+
+      ],
+      unlocks: ["I4"],
+    },
+    {
+      id: "F3",
+      type: "place",
+      name: "The Dark Forest",
+      description: "No sunlight reaches this forest.",
+      tokens: [],
+      actions: [
+        { consume: ["T", "T", "T"], produce: ["I1"], needs: [] },
+        { consume: ["T", 'T','T'], produce: ["X"], needs: [] },
+        { consume: ["T", 'T'], produce: ["M"], needs: [] },
+      ],
+      unlocks: ["I1"],
+    },
+      
   ],
   lockedItems: [
     {
@@ -78,8 +111,7 @@ export const InitialGameState: Game = {
       type: "item",
       name: "Wooden Stick",
       description: "a wooden stick that can be very useful.",
-      tokens: [
-      ],
+      tokens: [],
       actions: [{ consume: ["T"], produce: ["I2"], needs: [] }],
       unlocks: ["I2", "I3"],
     },

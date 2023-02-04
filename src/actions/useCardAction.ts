@@ -131,5 +131,25 @@ export default function useAction(game: Game, action: Action, card: Card) {
 
   newGame2.unusedTokens = ret.unusedTokens.sort();
 
-  return payTime(newGame2, histograms.consume.get("T"));
+  const newGame3  = payTime(newGame2, histograms.consume.get("T"));
+
+  //Moviment
+  if (histograms.produce.get("M") || 0 > 0) {
+    const idxLocation = newGame3.places.findIndex((card: Card) => (card.tokens.some((token) => token.type === "position")));
+    const idxDestination = newGame3.places.findIndex((destiny: Card) => (card.id == destiny.id));
+    if(idxLocation>=0 || idxDestination>=0){
+      const idxToken = newGame3.places[idxLocation].tokens.findIndex((token) => token.type === "position");
+      const tokens = newGame3.places[idxLocation].tokens.splice(idxToken, 1);
+      newGame3.places[idxDestination].tokens = [...newGame3.places[idxDestination].tokens, ...tokens];
+    }
+  }
+
+  //Explroration
+  if (histograms.produce.get("X") || 0 > 0 && newGame3.lockedPlaces.length>0) {
+    const newLocation = newGame3.lockedPlaces.splice(Math.floor(Math.random() * newGame3.lockedPlaces.length), 1)[0];
+    newGame3.places.push(newLocation);
+  }
+
+
+  return newGame3;
 }
