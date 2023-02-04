@@ -1,4 +1,6 @@
+import { useAtom } from "jotai";
 import { useState } from "react";
+import { gameAtom } from "../App";
 import styles from "./TimeTrack.module.css";
 import TokenElement from "./TokenElement";
 
@@ -14,26 +16,23 @@ const TIME_SLOTS = [
   { time: 8, label: "Night" },
 ];
 
-interface TimeTrackProps {
-  time: number;
-}
 
-export default function TimeTrack({ time }: TimeTrackProps) {
+
+export default function TimeTrack() {
+  const [game] = useAtom(gameAtom);
   return (
     <div className={styles.TimeTrack}>
       <ol className={styles.TimeTrackSlots}>
-        {TIME_SLOTS.map((slot) => (
+        {game.timeTrack.map((slot) => (
           <li
-            className={time === slot.time ? styles.selectedSlot : ""}
+            className={slot.tokens?.length>0?styles.selectedSlot:''}
             key={`slot${slot.time}`}
           >
             <div>{slot.label}</div>
             <div>
-              {time === slot.time ? (
-                <TokenElement token={{ id: "T", player: 1, name: "Time" }} />
-              ) : (
-                ""
-              )}
+             {slot.tokens?.map((token) => (
+                <TokenElement token={token} key={token.id} />
+             ))}
             </div>
           </li>
         ))}
