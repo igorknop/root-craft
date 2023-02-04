@@ -1,0 +1,27 @@
+.TimeTrackSlots {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  align-content: start;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  gap: 0.5em;
+}
+
+.TimeTrackSlots > li {
+  padding: 0.5em;
+  width: 100px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+.TimeTrackSlots > li.selectedSlot {
+  border: 2px solid red;
+}
+
+.TimeTrackSlots > li div {
+  height: 1.5em;
+}
