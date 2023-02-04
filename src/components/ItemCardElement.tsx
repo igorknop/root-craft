@@ -1,5 +1,5 @@
 import Token from '../Token';
-import styles from './ItemCard.module.css';
+import styles from './ItemCardElement.module.css';
 import TokenElement from './TokenElement';
 
 

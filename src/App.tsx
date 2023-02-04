@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./App.module.css";
-import ItemCard from "./components/ItemCard";
-import PlaceCard from "./components/PlaceCard";
+import ItemCardElement from "./components/ItemCardElement";
+import PlaceCardElement from "./components/PlaceCardElement";
 import TimeTrack from "./components/TimeTrack";
 import TokenElement from "./components/TokenElement";
 
@@ -24,11 +24,14 @@ const unusedTokens = [
   { id: "C3", name: "Chest 3", player: 1 },
 ];
 
+
+
 function App() {
   return (
     <div className={styles.App}>
-      <section>
         <h1>Root Craft</h1>
+      <section>
+         <h2>Time Track</h2>
         <TimeTrack time={2} />
       </section>
       <section>
@@ -41,7 +44,7 @@ function App() {
       </section>
       <section>
         <h2>Places</h2>
-        <PlaceCard
+        <PlaceCardElement
           place={{
             name: "The Forest",
             description: "A dark and foreboding forest.",
@@ -57,7 +60,7 @@ function App() {
       </section>
       <section>
         <h2>Items</h2>
-        <ItemCard
+        <ItemCardElement
           item={{
             name: "Wood",
             description: "A piece of wood.",

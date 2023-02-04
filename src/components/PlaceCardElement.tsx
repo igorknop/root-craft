@@ -1,5 +1,5 @@
 import Token from '../Token';
-import styles from './PlaceCard.module.css';
+import styles from './PlaceCardElement.module.css';
 import TokenElement from './TokenElement';
 
 
@@ -12,7 +12,7 @@ interface PlaceCardProps {
 }
 
 
-export default function PlaceCard({ place }: PlaceCardProps) {
+export default function PlaceCardElement({ place }: PlaceCardProps) {
   return (
     <div className={styles.PlaceCard}>
       <h2>{place.name}</h2>

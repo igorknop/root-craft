@@ -21,7 +21,6 @@ interface TimeTrackProps {
 export default function TimeTrack({ time }: TimeTrackProps) {
   return (
     <div className={styles.TimeTrack}>
-      <h2>Time Track</h2>
       <ol className={styles.TimeTrackSlots}>
         {TIME_SLOTS.map((slot) => (
           <li
