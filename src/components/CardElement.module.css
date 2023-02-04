@@ -1,4 +1,4 @@
-.PlaceCard {
+.Card {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 3fr 1fr;
@@ -13,39 +13,39 @@
   zoom: 0.6;
 }
 
-.PlaceCard[data-type="place"] {
+.Card[data-type="place"] {
   background-color: lightgreen;
 }
 
-.PlaceCard[data-type="place"] {
+.Card[data-type="place"] {
   background-color: lightblue;
 }
 
-.PlaceCard[data-type="enemy"] {
+.Card[data-type="enemy"] {
   background-color: lightpink;
 }
 
-.PlaceCardTitle {
+.CardTitle {
   font-size: 0.8em;
   display: grid;
   grid-template-columns: 1fr 9fr;
 }
 
-.PlaceCardTitle h1 {
+.CardTitle h1 {
   font-size: 1em;
 }
 
-.PlaceCardTitle h2 {
+.CardTitle h2 {
   font-size: 0.8em;
 }
 
-.PlaceCardFluffy {
+.CardFluffy {
   font-size: 0.6em;
   font-style: italic;
   opacity: 0.8;
 }
 
-.PlaceCardUnlocks {
+.CardUnlocks {
   justify-content: flex-end;
   display: flex;
   gap: 1mm;

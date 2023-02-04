@@ -1,6 +1,6 @@
 import styles from "./App.module.css";
 import Card from "./types/Card";
-import PlaceCardElement from "./components/PlaceCardElement";
+import CardElement from "./components/CardElement";
 import TimeTrack from "./components/TimeTrack";
 import TokenElement from "./components/TokenElement";
 
@@ -73,11 +73,11 @@ function App() {
       </section>
       <section>
         <h2>Places</h2>
-        <PlaceCardElement place={forest} />
+        <CardElement place={forest} />
       </section>
       <section>
         <h2>Items</h2>
-        <PlaceCardElement
+        <CardElement
           place={hammer}
         />
       </section>

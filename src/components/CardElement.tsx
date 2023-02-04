@@ -1,14 +1,13 @@
 import Card from "../types/Card";
-import Token from "../types/Token";
 import ActionElement from "./ActionElement";
-import styles from "./PlaceCardElement.module.css";
+import styles from "./CardElement.module.css";
 import TokenElement from "./TokenElement";
 import { FaUnlockAlt } from "react-icons/fa";
 
-export default function PlaceCardElement({ place }: { place: Card }) {
+export default function CardElement({ place }: { place: Card }) {
   return (
-    <div className={styles.PlaceCard} data-type={place.type}>
-      <div className={styles.PlaceCardTitle}>
+    <div className={styles.Card} data-type={place.type}>
+      <div className={styles.CardTitle}>
         <h1>{place.id}</h1>
         <h2>{place.name}</h2>
       </div>
@@ -18,13 +17,13 @@ export default function PlaceCardElement({ place }: { place: Card }) {
         ))}
       </div>
 
-      <div className={styles.PlaceCardUnlocks}>
+      <div className={styles.CardUnlocks}>
         <FaUnlockAlt />
         {place.unlocks.map((item) => (
           <div>{item}</div>
         ))}
       </div>
-      <p className={styles.PlaceCardFluffy}>{place.description}</p>
+      <p className={styles.CardFluffy}>{place.description}</p>
       <div className={styles.tokens}>
         {place.tokens.map((token) => (
           <TokenElement token={token} key={token.id} />
