@@ -13,3 +13,7 @@
 
 
 }
+
+.TokenElement[data-player="1"]{
+  background-color: lightsalmon;
+}

@@ -24,12 +24,21 @@ export default function TimeTrack({ time }: TimeTrackProps) {
       <h2>Time Track</h2>
       <ol className={styles.TimeTrackSlots}>
         {TIME_SLOTS.map((slot) => (
-          <li className={time === slot.time ? styles.selectedSlot: ""} key={`slot${slot.time}`}>
+          <li
+            className={time === slot.time ? styles.selectedSlot : ""}
+            key={`slot${slot.time}`}
+          >
             <div>{slot.label}</div>
-            <div>{time === slot.time ? <TokenElement token={{id:'T1'}}/> : ""}</div>
+            <div>
+              {time === slot.time ? (
+                <TokenElement token={{ id: "T", player: 1, name: "Time" }} />
+              ) : (
+                ""
+              )}
+            </div>
           </li>
         ))}
-    </ol>
-      </div>
+      </ol>
+    </div>
   );
 }
