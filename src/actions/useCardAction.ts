@@ -114,7 +114,10 @@ export default function useAction(game: Game, action: Action) {
     histograms.consume
   );
   newGame.items = newCards;
-  newGame.unusedTokens = unusedTokens;
+  console.log("unusedTokens", unusedTokens);
+  
+  newGame.unusedTokens = [...newGame.unusedTokens, ...unusedTokens].sort();
+  console.log("unusedTokens2", newGame.unusedTokens);
 
   newGame.timeTrack = payTime(game.timeTrack, histograms.consume.get("T"));
 
