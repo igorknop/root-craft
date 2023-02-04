@@ -1,6 +1,7 @@
 import Game from "./types/Game";
 
 export const InitialGameState: Game = {
+  days: 1,
   state: "playing",
   timeTrack: [
     { time: 1, label: "Dawn", tokens: [] },
@@ -9,7 +10,7 @@ export const InitialGameState: Game = {
       time: 3,
       label: "Noon",
       tokens: [
-        { id: "P", type: "position", name: "Player 1 Position", player: 1 },
+        { id: "T", type: "time", name: "Player 1 Position", player: 1 },
       ],
     },
     { time: 4, label: "Afternoon", tokens: [] },
@@ -37,17 +38,33 @@ export const InitialGameState: Game = {
   ],
   places: [
     {
-      id: "F1",
+      id: "P1",
       type: "place",
-      name: "The Forest",
-      description: "A dark and foreboding forest.",
+      name: "The sand bank",
+      description: "A calm river beach.",
       tokens: [
+        {
+          id: "S",
+          type: "shelter",
+          name: "Player 1 Shelter",
+          player: 1,
+        },
         {
           id: "P",
           type: "position",
           name: "Player 1 Position",
           player: 1,
         },
+      ],
+      actions: [{ consume: ["T"], produce: ["I1"], needs: [] }],
+      unlocks: ["I1"],
+    },
+    {
+      id: "F1",
+      type: "place",
+      name: "The Forest",
+      description: "A dark and foreboding forest.",
+      tokens: [
       ],
       actions: [{ consume: ["T", "T", "T"], produce: ["I1"], needs: [] }],
       unlocks: ["I1"],

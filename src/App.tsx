@@ -21,6 +21,7 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>Root Craft</h1>
+      <h2>{game.days>1?`${game.days} days.`:'Your first day!'}</h2>
       <section>
         <h2>Time Track</h2>
         <TimeTrackElement />

@@ -28,26 +28,47 @@ function computeHistograms(game: Game, action: Action) {
     addOrIncrement(produceHistogram, item);
   });
 
-  const inBagHistogram = new Map();
+  //is in shelter?
+  const locationIdx = game.places.findIndex((card) =>
+    card.tokens.some((token) => token.type === "position")
+  );
+  const locationId = game.places[locationIdx].id;
+  const shelterIdx = game.places.findIndex((card) =>
+    card.tokens.some((token) => token.type === "shelter")
+  );
+  const shelterId = game.places[shelterIdx].id;
+
+  const isInShelter = locationIdx === shelterIdx;
+
+  console.log("locationIdx", locationIdx, "shelterIdx", shelterIdx);
+
   const inHandHistogram = new Map();
-  const inBaseHistogram = new Map();
-  const inBothHistogram = new Map();
+  const inBagHistogram = new Map();
+  const inShelterHistogram = new Map();
+  const inLocationHistogram = new Map();
+  const inAvailableHistogram = new Map();
+
+  inLocationHistogram.set(locationId, 1);
+  inAvailableHistogram.set(locationId, 1);
 
   game.items.forEach((card) => {
     card.tokens.forEach((token) => {
-
-      addOrIncrement(inBothHistogram, card.id);
-      if 
-      (token.type === "hand") {
+      if (token.type === "hand") {
         addOrIncrement(inHandHistogram, card.id);
-      } else if 
-      (token.type === "bag") {
+        addOrIncrement(inAvailableHistogram, card.id);
+      } else if (token.type === "bag") {
         addOrIncrement(inBagHistogram, card.id);
+        addOrIncrement(inAvailableHistogram, card.id);
+      } else if (token.type === "sack" && locationId === card.id) {
+        addOrIncrement(inLocationHistogram, card.id);
+        addOrIncrement(inAvailableHistogram, card.id);
       } else if (token.type === "chest") {
-        addOrIncrement(inBaseHistogram, card.id);
+        addOrIncrement(inShelterHistogram, card.id);
+        if (isInShelter) {
+          addOrIncrement(inAvailableHistogram, card.id);
+        }
       }
-    
-  });
+    });
   });
 
   return {
@@ -56,8 +77,9 @@ function computeHistograms(game: Game, action: Action) {
     produce: produceHistogram,
     inBag: inBagHistogram,
     inHand: inHandHistogram,
-    inBase: inBaseHistogram,
-    inBoth: inBothHistogram,
+    inShelter: inShelterHistogram,
+    inLocation: inLocationHistogram,
+    inAvailable: inAvailableHistogram,
   };
 }
 
@@ -71,10 +93,7 @@ export default function useAction(game: Game, action: Action, card: Card) {
   let haveWhatIsNeeded = true;
   histograms.needs.forEach((value, key) => {
     // in possession
-    if (
-      value >
-      (histograms.inBag.get(key) || 0) + (histograms.inHand.get(key) || 0)
-    ) {
+    if (value > (histograms.inAvailable.get(key) || 0)) {
       haveWhatIsNeeded = false;
     }
   });
@@ -85,22 +104,20 @@ export default function useAction(game: Game, action: Action, card: Card) {
   //have what is consumed?
   let haveWhatIsConsumed = true;
   histograms.consume.forEach((value, key) => {
-    if(key === "T") return;
+    if (key === "T") return;
     // in possession
     if (
       value >
-      (histograms.inBag.get(key) || 0) + (histograms.inHand.get(key) || 0)
+      (histograms.inAvailable.get(key) || 0)
     ) {
       haveWhatIsConsumed = false;
     }
   });
   if (!haveWhatIsConsumed) {
-    
     return game;
   }
-  
-  const newGame2 = unlockItems(newGame, card);
 
+  const newGame2 = unlockItems(newGame, card);
 
   const { newCards, unusedTokens } = payTokens(
     newGame2.items,
@@ -111,11 +128,8 @@ export default function useAction(game: Game, action: Action, card: Card) {
 
   const ret = earnTokens(newGame2, histograms.produce);
   newGame2.items = ret.newItems;
-  
+
   newGame2.unusedTokens = ret.unusedTokens.sort();
 
-
-  newGame2.timeTrack = payTime(game.timeTrack, histograms.consume.get("T"));
-
-  return newGame2;
+  return payTime(newGame2, histograms.consume.get("T"));
 }
