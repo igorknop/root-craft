@@ -1,7 +1,16 @@
 import Game from "./types/Game";
 
 export const InitialGameState: Game = {
-  days: 1,
+  players: [
+    {
+      days: 1,
+      id: 1,
+      name: "Player 1",
+      score: 0,
+      hungry: 0,
+      damage: 0,
+    }
+  ],
   state: "playing",
   timeTrack: [
     { time: 1, id: "T1", label: "Dawn", tokens: [] },

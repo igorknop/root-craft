@@ -6,6 +6,8 @@ import { atom, useAtom } from "jotai";
 import { InitialGameState } from "./InitialGameState";
 import TimeTrackElement from "./components/TimeTrackElement";
 import { focusAtom } from "jotai-optics";
+import IconBar from "./components/IconBar";
+import {TbHeart, TbMeat} from "react-icons/tb";
 
 export const gameAtom  = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) => optic.prop('timeTrack'));
@@ -21,7 +23,19 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>Root Craft</h1>
-      <h2>{game.days>1?`${game.days} days.`:'Your first day!'}</h2>
+      <section className={styles.playerList}>
+        <h2>Players</h2>
+        <ul>
+          {game.players.map((player) => (
+            <li key={player.id}>
+              <h1>{player.name}</h1>
+              <h2>{player.days>1?`${player.days} days.`:'Your first day!'}</h2>
+              <div><IconBar max={10} value={player.damage} icon={(<TbHeart />)}/> </div>
+              <div><IconBar max={10} value={player.hungry} icon={(<TbMeat />)}/> </div>
+            </li>
+          ))}
+        </ul>
+      </section>
       <section>
         <h2>Time Track</h2>
         <TimeTrackElement />

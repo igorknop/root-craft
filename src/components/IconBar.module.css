@@ -1,0 +1,14 @@
+.IconBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+.IconBar > * {
+  text-shadow: 1mm 2mm 2mm rgba(0, 0, 0, 0.5);
+}
+
+.IconBar > *[data-lost="true"] {
+  opacity: 0.2;
+}
