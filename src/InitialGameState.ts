@@ -46,7 +46,7 @@ export const InitialGameState: Game = {
   ],
   places: [
     {
-      id: "P1",
+      id: "L1",
       type: "place",
       name: "The river bank",
       description: "A calm river running along a stone beach.",
@@ -65,55 +65,53 @@ export const InitialGameState: Game = {
         },
       ],
       actions: [
-        { consume: ["T"], produce: ["I2"], needs: ["P1"] },
-        { consume: ["T", "T", "T"], produce: ["X"], needs: ["P1"] },
+        { consume: ["T"], produce: ["I2"], needs: ["L1"] },
+        { consume: ["T", "T", "T"], produce: ["X"], needs: ["L1"] },
         { consume: ["T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I2"],
     },
-  ],
-  items: [],
-  lockedPlaces: [
     {
-      id: "L1",
+      id: "L2",
       type: "place",
       name: "The Forest",
       description: "A dark and foreboding forest.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T"], produce: ["I1"], needs: ["L1"] },
-        { consume: ["T", "T", "T"], produce: ["X"], needs: ["L1"] },
+        { consume: ["T", "T", "T"], produce: ["I1"], needs: ["L2"] },
+        { consume: ["T", "T", "T"], produce: ["X"], needs: ["L2"] },
         { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I1"],
     },
     {
-      id: "L2",
+      id: "L3",
       type: "place",
-      name: "The Moutain",
+      name: "The Mountain",
       description: "A rocky step stone wall.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T", "T"], produce: ["I3"], needs: ["L2"] },
+        { consume: ["T", "T", "T", "T"], produce: ["I3"], needs: ["L3"] },
         { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I4"],
     },
     {
-      id: "L3",
+      id: "L4",
       type: "place",
-      name: "The Dark Forest",
+      name: "Mushroom Forest",
       description: "No sunlight reaches this forest.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T"], produce: ["I1"], needs: ["L3"] },
-        { consume: ["T", "T", "T"], produce: ["X"], needs: ["L3"] },
+        { consume: ["T", "T", "T"], produce: ["I1"], needs: ["L4"] },
+        { consume: ["T", "T", "T"], produce: ["X"], needs: ["L4"] },
         { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I1"],
     },
   ],
-  lockedItems: [
+  lockedPlaces: [],
+  items: [
     {
       id: "I1",
       type: "item",
@@ -193,12 +191,11 @@ export const InitialGameState: Game = {
       name: "White Meat",
       description: "White raw meat.",
       tokens: [],
-      actions: [
-        { consume: ["T"], produce: ["!F"], needs: [] },
-      ],
+      actions: [{ consume: ["T"], produce: ["!F"], needs: [] }],
       unlocks: [],
     },
   ],
+  lockedItems: [],
   enemies: [
     {
       id: "M1",
@@ -207,13 +204,11 @@ export const InitialGameState: Game = {
       description: "A giant spider.",
       tokens: [],
       actions: [
-        { consume: [], produce: ["D"], needs: ['M1'] },
-        { consume: ['T'], produce: ["I7","K"], needs: ['I2'] },
+        { consume: [], produce: ["D"], needs: ["M1"] },
+        { consume: ["T"], produce: ["I7", "K"], needs: ["I2"] },
       ],
       unlocks: ["I7"],
     },
-  ],
-  lockedEnemies: [
     {
       id: "M2",
       type: "enemy",
@@ -221,8 +216,8 @@ export const InitialGameState: Game = {
       description: "A giant crab.",
       tokens: [],
       actions: [
-        { consume: [], produce: ["D","D"], needs: ['M2'] },
-        { consume: ['T'], produce: ["D", "I7"], needs: ['I5'] },
+        { consume: [], produce: ["D", "D"], needs: ["M2"] },
+        { consume: ["T"], produce: ["D", "I7"], needs: ["I5"] },
       ],
       unlocks: ["I7"],
     },
@@ -233,10 +228,11 @@ export const InitialGameState: Game = {
       description: "A giant Fly.",
       tokens: [],
       actions: [
-        { consume: [], produce: ["F"], needs: ['M3'] },
-        { consume: ["T", 'I2'], produce: ["I7",'K'], needs: [] },
+        { consume: [], produce: ["F"], needs: ["M3"] },
+        { consume: ["T", "I2"], produce: ["I7", "K"], needs: [] },
       ],
       unlocks: ["I7"],
     },
   ],
+  lockedEnemies: [],
 };

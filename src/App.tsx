@@ -50,19 +50,19 @@ function App() {
           ))}
         </div>
       </section>
-      <section>
+      <section className={styles.cardList}>
         <h2>Enemies</h2>
         {game.enemies.map((enemyCard) => (
           <CardElement card={enemyCard as Card} key={enemyCard.id}/>
         ))}
       </section>
-      <section>
+      <section className={styles.cardList}>
         <h2>Places</h2>
         {game.places.map((placeCard) => (
           <CardElement card={placeCard as Card} key={placeCard.id}/>
         ))}
       </section>
-      <section>
+      <section className={styles.cardList}>
         <h2>Items</h2>
         {game.items.map((itemCard) => (
           <CardElement

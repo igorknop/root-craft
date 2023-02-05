@@ -6,13 +6,14 @@ import { FaUnlockAlt } from "react-icons/fa";
 import useCardAction from "../actions/useCardAction";
 import { gameAtom } from "../App";
 import { useAtom } from "jotai";
+import Symbol from "./Symbol";
 
 export default function CardElement({ card }: { card: Card }) {
   const [game, setGame] = useAtom(gameAtom);
   return (
     <div className={styles.Card} data-type={card.type}>
       <div className={styles.CardTitle}>
-        <h1>{card.id}</h1>
+        <h1><Symbol>{card.id}</Symbol></h1>
         <h2>{card.name}</h2>
       </div>
       <div className={styles.actions}>
@@ -31,7 +32,7 @@ export default function CardElement({ card }: { card: Card }) {
       <div className={styles.CardUnlocks}>
         {card.unlocks.length>0?<FaUnlockAlt />:null}
         {card.unlocks.map((item) => (
-          <div key={`${card.id}_ulck_${item}`}>{item}</div>
+          <div key={`${card.id}_ulck_${item}`}><Symbol>{item}</Symbol></div>
         ))}
       </div>
       <p className={styles.CardFluffy}>{card.description}</p>
