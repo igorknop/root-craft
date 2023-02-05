@@ -244,162 +244,164 @@ export default function RootElement() {
   const layout = { name: "cose-bilkent" };
 
   return (
-    <CytoscapeComponent
-      elements={elements}
-      className={styles.RootElement}
-      layout={layout}
-      wheelSensitivity={0.1}
-      stylesheet={[
-        {
-          selector: "node",
-          style: {
-            label: function (e) {
-              if (e.data("id") === e.data("label")) {
-                return ` ${e.data("id")}`;
-              } else {
-                return ` ${e.data("id")}\n${e.data("label")} `;
-              }
+    <main>
+      <CytoscapeComponent
+        elements={elements}
+        className={styles.RootElement}
+        layout={layout}
+        wheelSensitivity={0.1}
+        stylesheet={[
+          {
+            selector: "node",
+            style: {
+              label: function (e) {
+                if (e.data("id") === e.data("label")) {
+                  return ` ${e.data("id")}`;
+                } else {
+                  return ` ${e.data("id")}\n${e.data("label")} `;
+                }
+              },
+              width: "label",
+              "text-valign": "center",
+              "text-halign": "center",
+              shape: "rectangle",
+              "background-color": "lightblue",
+              "border-color": "black",
+              "border-style": "solid",
+              "border-width": 1,
+              "font-size": 8,
+              "text-wrap": "wrap",
+              "text-max-width": "100px",
+              "padding-left": "2px",
+              "padding-right": "2px",
             },
-            width: "label",
-            "text-valign": "center",
-            "text-halign": "center",
-            shape: "rectangle",
-            "background-color": "lightblue",
-            "border-color": "black",
-            "border-style": "solid",
-            "border-width": 1,
-            "font-size": 8,
-            "text-wrap": "wrap",
-            "text-max-width": "100px",
-            "padding-left": "2px",
-            "padding-right": "2px",
           },
-        },
-        {
-          selector: "edge",
-          style: {
-            width: 1,
-            "target-distance-from-node": 3,
-            "curve-style": "bezier",
-            "target-arrow-shape": "triangle",
+          {
+            selector: "edge",
+            style: {
+              width: 1,
+              "target-distance-from-node": 3,
+              "curve-style": "bezier",
+              "target-arrow-shape": "triangle",
+            },
           },
-        },
-        {
-          selector: "node[type='place']",
-          style: {
-            shape: "rectangle",
-            "background-color": "lightblue",
+          {
+            selector: "node[type='place']",
+            style: {
+              shape: "rectangle",
+              "background-color": "lightblue",
+            },
           },
-        },
-        {
-          selector: "node[type='item']",
-          style: {
-            shape: "rectangle",
-            "background-color": "lightyellow",
+          {
+            selector: "node[type='item']",
+            style: {
+              shape: "rectangle",
+              "background-color": "lightyellow",
+            },
           },
-        },
-        {
-          selector: "node[type='enemy']",
-          style: {
-            shape: "rectangle",
-            "background-color": "lightpink",
+          {
+            selector: "node[type='enemy']",
+            style: {
+              shape: "rectangle",
+              "background-color": "lightpink",
+            },
           },
-        },
-        {
-          selector: "node[type='action']",
-          style: {
-            shape: "ellipse",
-            "background-color": "lightgray",
+          {
+            selector: "node[type='action']",
+            style: {
+              shape: "ellipse",
+              "background-color": "lightgray",
+            },
           },
-        },
-        {
-          selector: "node[type='effect']",
-          style: {
-            shape: "octagon",
-            "background-color": "orange",
-            width: 30,
+          {
+            selector: "node[type='effect']",
+            style: {
+              shape: "octagon",
+              "background-color": "orange",
+              width: 30,
+            },
           },
-        },
-        {
-          selector: "node#type_locations",
-          style: {
-            "background-color": "lightblue",
-            "border-width": 2,
+          {
+            selector: "node#type_locations",
+            style: {
+              "background-color": "lightblue",
+              "border-width": 2,
+            },
           },
-        },
-        {
-          selector: "node#type_items",
-          style: {
-            "background-color": "lightyellow",
-            "border-width": 2,
+          {
+            selector: "node#type_items",
+            style: {
+              "background-color": "lightyellow",
+              "border-width": 2,
+            },
           },
-        },
-        {
-          selector: "node#type_enemies",
-          style: {
-            "background-color": "lightpink",
-            "border-width": 2,
+          {
+            selector: "node#type_enemies",
+            style: {
+              "background-color": "lightpink",
+              "border-width": 2,
+            },
           },
-        },
-        {
-          selector: 'edge[source="type_locations"]',
-          style: {
-            width: 1,
-            "target-arrow-shape": "triangle",
-            "target-arrow-fill": "filled",
-            "mid-target-arrow-color": "lightblue",
-            "line-opacity": 0.8,
-            "target-arrow-color": "lightblue",
-            "line-color": "lightblue",
+          {
+            selector: 'edge[source="type_locations"]',
+            style: {
+              width: 1,
+              "target-arrow-shape": "triangle",
+              "target-arrow-fill": "filled",
+              "mid-target-arrow-color": "lightblue",
+              "line-opacity": 0.8,
+              "target-arrow-color": "lightblue",
+              "line-color": "lightblue",
+            },
           },
-        },
-        {
-          selector: 'edge[source="type_items"]',
-          style: {
-            width: 1,
-            "target-arrow-shape": "triangle",
-            "target-arrow-fill": "filled",
-            "line-opacity": 0.8,
-            "target-arrow-color": "orange",
-            "line-color": "orange",
+          {
+            selector: 'edge[source="type_items"]',
+            style: {
+              width: 1,
+              "target-arrow-shape": "triangle",
+              "target-arrow-fill": "filled",
+              "line-opacity": 0.8,
+              "target-arrow-color": "orange",
+              "line-color": "orange",
+            },
           },
-        },
-        {
-          selector: 'edge[source="type_enemies"]',
-          style: {
-            width: 1,
-            "target-arrow-shape": "triangle",
-            "target-arrow-fill": "filled",
-            "line-opacity": 0.8,
-            "target-arrow-color": "lightpink",
-            "line-color": "lightpink",
+          {
+            selector: 'edge[source="type_enemies"]',
+            style: {
+              width: 1,
+              "target-arrow-shape": "triangle",
+              "target-arrow-fill": "filled",
+              "line-opacity": 0.8,
+              "target-arrow-color": "lightpink",
+              "line-color": "lightpink",
+            },
           },
-        },
-        {
-          selector: 'edge[type="unlocks"]',
-          style: {
-            width: 2,
-            "line-dash-pattern": [2, 2],
-            "line-fill": "solid",
-            color: "green",
-            "target-arrow-shape": "triangle",
-            "line-color": "data(color)",
-            "target-arrow-color": "green",
+          {
+            selector: 'edge[type="unlocks"]',
+            style: {
+              width: 2,
+              "line-dash-pattern": [2, 2],
+              "line-fill": "solid",
+              color: "green",
+              "target-arrow-shape": "triangle",
+              "line-color": "data(color)",
+              "target-arrow-color": "green",
+            },
           },
-        },
-        {
-          selector: 'edge[type="produce"]',
-          style: {
-            width: 2,
-            "line-dash-pattern": [2, 2],
-            "line-fill": "solid",
-            color: "orange",
-            "target-arrow-shape": "triangle",
-            "line-color": "orange",
-            "target-arrow-color": "orange",
+          {
+            selector: 'edge[type="produce"]',
+            style: {
+              width: 2,
+              "line-dash-pattern": [2, 2],
+              "line-fill": "solid",
+              color: "orange",
+              "target-arrow-shape": "triangle",
+              "line-color": "orange",
+              "target-arrow-color": "orange",
+            },
           },
-        },
-      ]}
-    />
+        ]}
+      />
+    </main>
   );
 }

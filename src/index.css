@@ -1,6 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-family: 'Azeret Mono', monospace;
+  font-family: "Azeret Mono", monospace;
   line-height: 1.25;
   font-weight: 400;
 
@@ -13,13 +13,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  font-size: 4mm;
-  font-family: 'Azeret Mono', monospace;
 }
 
 a {
@@ -35,7 +28,7 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  margin: 0  auto;
   display: flex;
   place-items: center;
   min-width: 320px;
@@ -98,4 +91,19 @@ section {
 
 section > h2 {
   display: none;
+}
+
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-size: 4mm;
+  font-family: "Azeret Mono", monospace;
+}
+
+nav > ul {
+  list-style: none;
+  align-items: left;
+  text-align: left;
 }
