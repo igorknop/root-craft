@@ -29,9 +29,12 @@ export default function RootElement() {
     // { data: { id: "type_locations", label: "Locations", type: "place" } },
     // { data: { id: "type_enemies", label: "Enemies", type: "enemy" } },
   ];
-
+  
   const data = InitialGameState;
-  data.places.forEach((place) => {
+  const allPlaces = [...data.places, ...data.lockedPlaces];
+  const allItems = [...data.items, ...data.lockedItems];
+  const allEnemies = [...data.enemies, ...data.lockedEnemies];
+  allPlaces.forEach((place) => {
     elements.push({
       data: { id: place.id, label: place.name, type: place.type },
     });
@@ -44,8 +47,7 @@ export default function RootElement() {
     //   },
     // });
   });
-
-  data.items.forEach((item) => {
+  allItems.forEach((item) => {
     elements.push({ data: { id: item.id, label: item.name, type: item.type } });
     // elements.push({
     //   data: {
@@ -57,7 +59,7 @@ export default function RootElement() {
     // });
   });
 
-  data.enemies.forEach((enemy) => {
+  allEnemies.forEach((enemy) => {
     elements.push({
       data: { id: enemy.id, label: enemy.name, type: enemy.type },
     });
@@ -71,7 +73,7 @@ export default function RootElement() {
     // });
   });
 
-  data.items.forEach((item) => {
+  allItems.forEach((item) => {
     item.unlocks.forEach((unlock) => {
       elements.push({
         data: {
@@ -128,7 +130,7 @@ export default function RootElement() {
     });
   });
 
-  data.places.forEach((place) => {
+  allPlaces.forEach((place) => {
     place.unlocks.forEach((unlock) => {
       elements.push({
         data: {
@@ -185,7 +187,7 @@ export default function RootElement() {
     });
   });
 
-  data.enemies.forEach((enemy) => {
+  allEnemies.forEach((enemy) => {
     enemy.unlocks.forEach((unlock) => {
       elements.push({
         data: {

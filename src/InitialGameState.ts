@@ -13,19 +13,20 @@ export const InitialGameState: Game = {
   ],
   state: "playing",
   timeTrack: [
-    { time: 1, id: "T1", partId:"TP1", label: "Dawn", tokens: [] },
-    { time: 2, id: "T2", partId:"TP1", label: "Morning", tokens: [] },
+    { time: 1, id: "T1", partId: "TP1", label: "Dawn", tokens: [] },
+    { time: 2, id: "T2", partId: "TP1", label: "Morning", tokens: [] },
     {
       time: 3,
-      id: "T3", partId:"TP1",
+      id: "T3",
+      partId: "TP1",
       label: "Noon",
-      tokens: [{ id: "T",  type: "time", name: "Player 1 Position", player: 1 }],
+      tokens: [{ id: "T", type: "time", name: "Player 1 Position", player: 1 }],
     },
-    { time: 4, id: "T4", partId:"TP2", label: "Afternoon", tokens: [] },
-    { time: 5, id: "T5", partId:"TP2", label: "Dusk", tokens: [] },
-    { time: 6, id: "T6", partId:"TP2", label: "Evening", tokens: [] },
-    { time: 7, id: "T7", partId:"TP3", label: "Midnight", tokens: [] },
-    { time: 8, id: "T8", partId:"TP3", label: "Night", tokens: [] },
+    { time: 4, id: "T4", partId: "TP2", label: "Afternoon", tokens: [] },
+    { time: 5, id: "T5", partId: "TP2", label: "Dusk", tokens: [] },
+    { time: 6, id: "T6", partId: "TP2", label: "Evening", tokens: [] },
+    { time: 7, id: "T7", partId: "TP3", label: "Midnight", tokens: [] },
+    { time: 8, id: "T8", partId: "TP3", label: "Night", tokens: [] },
   ],
   unusedTokens: [
     { id: "T", type: "time", name: "Player 1 Time", player: 1 },
@@ -71,6 +72,8 @@ export const InitialGameState: Game = {
       ],
       unlocks: ["I2"],
     },
+  ],
+  lockedPlaces: [
     {
       id: "L2",
       type: "place",
@@ -110,8 +113,8 @@ export const InitialGameState: Game = {
       unlocks: ["I1"],
     },
   ],
-  lockedPlaces: [],
-  items: [
+  items: [],
+  lockedItems: [
     {
       id: "I1",
       type: "item",
@@ -191,12 +194,12 @@ export const InitialGameState: Game = {
       name: "White Meat",
       description: "White raw meat.",
       tokens: [],
-      actions: [{ consume: ["T"], produce: ["!F","!F"], needs: [] }],
+      actions: [{ consume: ["T"], produce: ["!F", "!F"], needs: [] }],
       unlocks: [],
     },
   ],
-  lockedItems: [],
-  enemies: [
+  enemies: [],
+  lockedEnemies: [
     {
       id: "M1",
       type: "enemy",
@@ -234,5 +237,4 @@ export const InitialGameState: Game = {
       unlocks: ["I8"],
     },
   ],
-  lockedEnemies: [],
 };
