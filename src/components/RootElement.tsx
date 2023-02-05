@@ -120,7 +120,9 @@ export default function RootElement({ game }: { game: Game }) {
         {
           selector: "node",
           style: {
-            label: "data(label)",
+            label: function (e) {
+              return `${e.data("id")}: ${e.data("label")}`;
+            },
             "text-valign": "top",
             "text-halign": "center",
             shape: "rectangle",
