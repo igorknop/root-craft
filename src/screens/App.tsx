@@ -11,7 +11,7 @@ import { TbHeart, TbMeat } from "react-icons/tb";
 import { computeHistograms } from "../actions/useCardAction";
 import Symbol from "./Symbol";
 import { useEffect } from "react";
-import { redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const gameAtom = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) =>
@@ -24,19 +24,9 @@ export const placesAtom = focusAtom(gameAtom, (optic) => optic.prop("places"));
 export const itemsAtom = focusAtom(gameAtom, (optic) => optic.prop("items"));
 
 function App() {
-  const [game] = useAtom(gameAtom);
+  const [game, setGame] = useAtom(gameAtom);
 
   const { inAvailable } = computeHistograms(game);
-
-  useEffect(() => {
-    if (game.players[0].damage >= 10) {
-      redirect("/scoring");
-    }
-    if (game.players[0].hunger >= 10) {
-      redirect("/scoring");
-    }
-  }),
-    [game];
 
   return (
     <div className={styles.App}>
@@ -60,6 +50,26 @@ function App() {
           ))}
         </ul>
       </section>
+      {game.state === "game_over" ? (
+        <section className={styles.gameOver}>
+          <h1>GAME OVER</h1>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/scoring">Scoring</Link>.
+              </li>
+              <li>
+                <Link onClick={()=>{
+                  setGame(structuredClone(InitialGameState));
+                }} to="/">Reset Game</Link>.
+              </li>
+              <li>
+                <Link to="/">Back to Main Menu</Link>.
+              </li>
+            </ul>
+          </nav>
+        </section>
+      ) : null}
       <section>
         <h2>Time Track</h2>
         <TimeTrackElement />

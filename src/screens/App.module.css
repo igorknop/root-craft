@@ -43,7 +43,7 @@
   justify-content: center;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 1em 0;
   gap: 1mm;
 }
 
@@ -61,4 +61,15 @@
 
 .availableList span{
   font-size: 1.2em;
+}
+
+.gameOver {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: auto;
+  font-size: 4mm;
+  border: 8px double black;
 }

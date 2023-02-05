@@ -9,8 +9,9 @@ export default function Scoring() {
 
   return (
     <main>
+      <h1>Root Craft</h1>
       <div className={styles.Scoring}>
-        <h1>Scoring</h1>
+        <h2>Scoring</h2>
         <table>
           <thead>
             <tr>

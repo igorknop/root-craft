@@ -98,6 +98,8 @@ export function computeHistograms(game: Game, action?: Action) {
 }
 
 export default function useAction(game: Game, action: Action, card: Card) {
+  if(game.state !== "playing") return game;
+
   let newGame = structuredClone(game);
 
   //compute histograms
@@ -170,22 +172,16 @@ export default function useAction(game: Game, action: Action, card: Card) {
   }
 
   //Exploration
-  console.log("amtes", newGame.lockedPlaces.length);
-
   if (
     (histograms.produce.get("X") || 0 > 0) &&
     newGame.lockedPlaces.length > 0
   ) {
-    console.log("entrou");
-
     const newLocation = newGame.lockedPlaces.splice(
       Math.floor(Math.random() * newGame.lockedPlaces.length),
       1
     )[0];
     newGame.places.push(newLocation);
   }
-  console.log("depois", newGame.lockedPlaces.length);
-
   //Damage
   if (histograms.produce.get("D") || 0 > 0) {
     newGame.players[0].damage += histograms.produce.get("D") || 0;
@@ -207,6 +203,12 @@ export default function useAction(game: Game, action: Action, card: Card) {
       0
     );
   }
+
+  //game over
+  if (newGame.players[0].damage >= 10 || newGame.players[0].hunger >= 10) {
+    newGame.state = "game_over";
+  }
+
 
   return newGame;
 }
