@@ -9,7 +9,7 @@ export const InitialGameState: Game = {
       score: 0,
       hungry: 0,
       damage: 0,
-    }
+    },
   ],
   state: "playing",
   timeTrack: [
@@ -178,6 +178,54 @@ export const InitialGameState: Game = {
       tokens: [],
       actions: [],
       unlocks: ["I7"],
+    },
+    {
+      id: "I7",
+      type: "item",
+      name: "Silk",
+      description: "Silk that can be used to make clothes",
+      tokens: [],
+      actions: [],
+      unlocks: ["I8"],
+    },
+  ],
+  enemies: [],
+  lockedEnemies: [
+    {
+      id: "M1",
+      type: "enemy",
+      name: "Giant Spider",
+      description: "A giant spider.",
+      tokens: [],
+      actions: [
+        { consume: ["D"], produce: [], needs: [] },
+        { consume: ["F", "F", "F"], produce: ["D",'I7'], needs: ["M1"] },
+      ],
+      unlocks: ['I7'],
+    },
+    {
+      id: "M2",
+      type: "enemy",
+      name: "Giant Crab",
+      description: "A giant crab.",
+      tokens: [],
+      actions: [
+        { consume: ["D"], produce: [], needs: [] },
+        { consume: ["F", "F", "F"], produce: ["D",'I7'], needs: ["M1"] },
+      ],
+      unlocks: ['I7'],
+    },
+    {
+      id: "M3",
+      type: "enemy",
+      name: "Giant Fly",
+      description: "A giant Fly.",
+      tokens: [],
+      actions: [
+        { consume: ["D"], produce: [], needs: [] },
+        { consume: ["F", "F", "F"], produce: ["D",'I7'], needs: ["M1"] },
+      ],
+      unlocks: ['I7'],
     },
   ],
 };

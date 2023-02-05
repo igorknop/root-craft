@@ -29,7 +29,7 @@ export default function CardElement({ card }: { card: Card }) {
       </div>
 
       <div className={styles.CardUnlocks}>
-        <FaUnlockAlt />
+        {card.unlocks.length>0?<FaUnlockAlt />:null}
         {card.unlocks.map((item) => (
           <div key={`${card.id}_ulck_${item}`}>{item}</div>
         ))}

@@ -9,7 +9,9 @@ export default interface Game {
   timeTrack: TimeTrackSlot[];
   unusedTokens: Token[];
   places: Card[];
+  lockedPlaces: Card[];
   items: Card[];
   lockedItems: Card[];
-  lockedPlaces: Card[];
+  enemies: Card[];
+  lockedEnemies: Card[];
 }
