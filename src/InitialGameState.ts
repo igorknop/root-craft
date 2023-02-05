@@ -191,7 +191,7 @@ export const InitialGameState: Game = {
       name: "White Meat",
       description: "White raw meat.",
       tokens: [],
-      actions: [{ consume: ["T"], produce: ["!F"], needs: [] }],
+      actions: [{ consume: ["T"], produce: ["!F","!F"], needs: [] }],
       unlocks: [],
     },
   ],
@@ -217,9 +217,9 @@ export const InitialGameState: Game = {
       tokens: [],
       actions: [
         { consume: [], produce: ["D", "D"], needs: ["M2"] },
-        { consume: ["T"], produce: ["D", "I7"], needs: ["I5"] },
+        { consume: ["T"], produce: ["I8", "I8", "K"], needs: ["I5"] },
       ],
-      unlocks: ["I7"],
+      unlocks: ["I8"],
     },
     {
       id: "M3",
@@ -229,9 +229,9 @@ export const InitialGameState: Game = {
       tokens: [],
       actions: [
         { consume: [], produce: ["F"], needs: ["M3"] },
-        { consume: ["T", "I2"], produce: ["I7", "K"], needs: [] },
+        { consume: ["T", "I2"], produce: ["I8", "K"], needs: [] },
       ],
-      unlocks: ["I7"],
+      unlocks: ["I8"],
     },
   ],
   lockedEnemies: [],

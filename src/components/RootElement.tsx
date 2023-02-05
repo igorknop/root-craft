@@ -248,12 +248,17 @@ export default function RootElement({ game }: { game: Game }) {
       elements={elements}
       className={styles.RootElement}
       layout={layout}
+      wheelSensitivity={0.1}
       stylesheet={[
         {
           selector: "node",
           style: {
             label: function (e) {
-              return ` ${e.data("id")}\n${e.data("label")} `;
+              if (e.data("id") === e.data("label")) {
+                return ` ${e.data("id")}`;
+              } else {
+                return ` ${e.data("id")}\n${e.data("label")} `;
+              }
             },
             width: "label",
             "text-valign": "center",
