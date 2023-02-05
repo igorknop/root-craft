@@ -9,7 +9,9 @@ import { focusAtom } from "jotai-optics";
 import IconBar from "../components/IconBar";
 import { TbHeart, TbMeat } from "react-icons/tb";
 import { computeHistograms } from "../actions/useCardAction";
-import Symbol from "../components/Symbol";
+import Symbol from "./Symbol";
+import { useEffect } from "react";
+import { redirect } from "react-router-dom";
 
 export const gameAtom = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) =>
@@ -26,10 +28,19 @@ function App() {
 
   const { inAvailable } = computeHistograms(game);
 
+  useEffect(() => {
+    if (game.players[0].damage >= 10) {
+      redirect("/scoring");
+    }
+    if (game.players[0].hunger >= 10) {
+      redirect("/scoring");
+    }
+  }),
+    [game];
+
   return (
     <div className={styles.App}>
       <h1>Root Craft</h1>
-
       <section className={styles.playerList}>
         <h2>Players</h2>
         <ul>
@@ -66,15 +77,12 @@ function App() {
       </section>
 
       <section className={styles.cardList}>
-        <h2>Enemies</h2>
-        {game.enemies.map((enemyCard) => (
-          <CardElement card={enemyCard as Card} key={enemyCard.id} />
-        ))}
-      </section>
-      <section className={styles.cardList}>
         <h2>Places</h2>
         {game.places.map((placeCard) => (
           <CardElement card={placeCard as Card} key={placeCard.id} />
+        ))}
+        {game.enemies.map((enemyCard) => (
+          <CardElement card={enemyCard as Card} key={enemyCard.id} />
         ))}
       </section>
       <section className={styles.cardList}>

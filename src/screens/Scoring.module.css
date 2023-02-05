@@ -1,0 +1,15 @@
+.Scoring {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.Scoring > table {
+  margin: auto;
+  text-align: center;
+}
+
+.Scoring  td,.Scoring  th {
+  padding: 0.3em;
+  border-top: 1px solid lightgrey;
+}

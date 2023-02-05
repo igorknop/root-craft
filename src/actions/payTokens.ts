@@ -14,19 +14,15 @@ export default function payTokens(game:Game,amount: Map<string, number>) {
         if (amount.get(card.id) || 0 > 0) {
           unusedTokens.push(token);
           amount.set(card.id, (amount.get(card.id) || 0) - 1);
-          console.log(card.id,card.tokens);          
           card.tokens.splice(t, 1);
-          console.log(card.id,card.tokens);
 
         }
       }
     }
   });
-  console.log("unusedTokens", game.unusedTokens);
   
   game.unusedTokens = [...game.unusedTokens, ...unusedTokens].sort();
   game.items = newCards;
-  console.log("unusedTokens", game.unusedTokens);
 
   return game;
 }

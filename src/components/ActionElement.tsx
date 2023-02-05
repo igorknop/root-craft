@@ -1,7 +1,7 @@
 import Action from "../types/Action";
 import styles from "./ActionElement.module.css";
 import {ImArrowRight} from "react-icons/im";
-import Symbol from "./Symbol";
+import Symbol from "../screens/Symbol";
 
 export default function ActionElement({ action, cardKey, onClick }: { action: Action, cardKey: string, onClick: () => void }) {
   return (

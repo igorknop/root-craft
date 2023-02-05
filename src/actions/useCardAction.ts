@@ -170,16 +170,21 @@ export default function useAction(game: Game, action: Action, card: Card) {
   }
 
   //Exploration
+  console.log("amtes", newGame.lockedPlaces.length);
+
   if (
-    histograms.produce.get("X") ||
-    (0 > 0 && newGame.lockedPlaces.length > 0)
+    (histograms.produce.get("X") || 0 > 0) &&
+    newGame.lockedPlaces.length > 0
   ) {
+    console.log("entrou");
+
     const newLocation = newGame.lockedPlaces.splice(
       Math.floor(Math.random() * newGame.lockedPlaces.length),
       1
     )[0];
     newGame.places.push(newLocation);
   }
+  console.log("depois", newGame.lockedPlaces.length);
 
   //Damage
   if (histograms.produce.get("D") || 0 > 0) {

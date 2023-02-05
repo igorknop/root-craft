@@ -6,7 +6,7 @@ import { FaUnlockAlt } from "react-icons/fa";
 import useCardAction from "../actions/useCardAction";
 import { gameAtom } from "../screens/App";
 import { useAtom } from "jotai";
-import Symbol from "./Symbol";
+import Symbol from "../screens/Symbol";
 
 export default function CardElement({ card }: { card: Card }) {
   const [game, setGame] = useAtom(gameAtom);

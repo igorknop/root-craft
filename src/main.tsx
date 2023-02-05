@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import MainMenu from "./screens/MainMenu";
 import RootElement from "./screens/RootElement";
 import About from "./screens/About";
+import Scoring from "./screens/Scoring";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/techtree",
     element: <RootElement />,
+  },
+  {
+    path: "/scoring",
+    element: <Scoring />,
   },
   {
     path: "/about",
