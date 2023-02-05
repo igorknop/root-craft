@@ -82,21 +82,48 @@ export default function RootElement({ game }: { game: Game }) {
         },
       });
     });
-    item.actions.forEach((action,a) => {
+    item.actions.forEach((action, a) => {
+      const actionID = `${item.id}_act_${a}`;
       elements.push({
         data: {
-          id: `${item.id}_act_${a}`,
-          label: `${item.id}_act_${a}`,
+          id: actionID,
+          label: actionID,
           type: "action",
         },
       });
       elements.push({
         data: {
           source: item.id,
-          target: `${item.id}_act_${a}`,
+          target: actionID,
           label: "is_action",
           type: "action",
         },
+      });
+      action.produce.forEach((produced) => {
+        if (
+          elements.find((e) => {
+            if (e.data["id"] === produced) {
+              return true;
+            }
+          }) === undefined
+        ) {
+          elements.push({
+            data: {
+              id: produced,
+              label: produced,
+              type: "effect",
+            },
+          });
+        }
+
+        elements.push({
+          data: {
+            source: actionID,
+            target: produced,
+            label: "produces",
+            type: "produce",
+          },
+        });
       });
     });
   });
@@ -112,6 +139,50 @@ export default function RootElement({ game }: { game: Game }) {
         },
       });
     });
+    place.actions.forEach((action, a) => {
+      const actionID = `${place.id}_act_${a}`;
+      elements.push({
+        data: {
+          id: actionID,
+          label: actionID,
+          type: "action",
+        },
+      });
+      elements.push({
+        data: {
+          source: place.id,
+          target: actionID,
+          label: "is_action",
+          type: "action",
+        },
+      });
+      action.produce.forEach((produced) => {
+        if (
+          elements.find((e) => {
+            if (e.data["id"] === produced) {
+              return true;
+            }
+          }) === undefined
+        ) {
+          elements.push({
+            data: {
+              id: produced,
+              label: produced,
+              type: "effect",
+            },
+          });
+        }
+
+        elements.push({
+          data: {
+            source: actionID,
+            target: produced,
+            label: "produces",
+            type: "produce",
+          },
+        });
+      });
+    });
   });
 
   data.enemies.forEach((enemy) => {
@@ -123,6 +194,50 @@ export default function RootElement({ game }: { game: Game }) {
           label: "unlocks",
           type: "unlocks",
         },
+      });
+    });
+    enemy.actions.forEach((action, a) => {
+      const actionID = `${enemy.id}_act_${a}`;
+      elements.push({
+        data: {
+          id: actionID,
+          label: actionID,
+          type: "action",
+        },
+      });
+      elements.push({
+        data: {
+          source: enemy.id,
+          target: actionID,
+          label: "is_action",
+          type: "action",
+        },
+      });
+      action.produce.forEach((produced) => {
+        if (
+          elements.find((e) => {
+            if (e.data["id"] === produced) {
+              return true;
+            }
+          }) === undefined
+        ) {
+          elements.push({
+            data: {
+              id: produced,
+              label: produced,
+              type: "effect",
+            },
+          });
+        }
+
+        elements.push({
+          data: {
+            source: actionID,
+            target: produced,
+            label: "produces",
+            type: "produce",
+          },
+        });
       });
     });
   });
@@ -153,7 +268,6 @@ export default function RootElement({ game }: { game: Game }) {
             "text-max-width": "100px",
             "padding-left": "2px",
             "padding-right": "2px",
-
           },
         },
         {
@@ -191,6 +305,14 @@ export default function RootElement({ game }: { game: Game }) {
           style: {
             shape: "ellipse",
             "background-color": "lightgray",
+          },
+        },
+        {
+          selector: "node[type='effect']",
+          style: {
+            shape: "octagon",
+            "background-color": "orange",
+            width: 30,
           },
         },
         {
@@ -249,7 +371,7 @@ export default function RootElement({ game }: { game: Game }) {
           },
         },
         {
-          selector: 'edge[label="unlocks"]',
+          selector: 'edge[type="unlocks"]',
           style: {
             width: 2,
             "line-dash-pattern": [2, 2],
@@ -258,6 +380,18 @@ export default function RootElement({ game }: { game: Game }) {
             "target-arrow-shape": "triangle",
             "line-color": "data(color)",
             "target-arrow-color": "green",
+          },
+        },
+        {
+          selector: 'edge[type="produce"]',
+          style: {
+            width: 2,
+            "line-dash-pattern": [2, 2],
+            "line-fill": "solid",
+            color: "orange",
+            "target-arrow-shape": "triangle",
+            "line-color": "orange",
+            "target-arrow-color": "orange",
           },
         },
       ]}
