@@ -15,19 +15,21 @@ function addOrIncrement(histogram: Map<string, number>, key: string) {
   }
 }
 
-export function computeHistograms(game: Game, action: Action) {
+export function computeHistograms(game: Game, action?: Action) {
   const consumeHistogram = new Map();
   const needsHistogram = new Map();
   const produceHistogram = new Map();
-  action.consume.forEach((item) => {
-    addOrIncrement(consumeHistogram, item);
-  });
-  action.needs.forEach((item) => {
-    addOrIncrement(needsHistogram, item);
-  });
-  action.produce.forEach((item) => {
-    addOrIncrement(produceHistogram, item);
-  });
+  if (action) {
+    action.consume.forEach((item) => {
+      addOrIncrement(consumeHistogram, item);
+    });
+    action.needs.forEach((item) => {
+      addOrIncrement(needsHistogram, item);
+    });
+    action.produce.forEach((item) => {
+      addOrIncrement(produceHistogram, item);
+    });
+  }
 
   //is in shelter?
   const locationIdx = game.places.findIndex((card) =>
@@ -46,6 +48,19 @@ export function computeHistograms(game: Game, action: Action) {
   const inShelterHistogram = new Map();
   const inLocationHistogram = new Map();
   const inAvailableHistogram = new Map();
+
+  //time of the dar
+  const timeSlot = game.timeTrack.find((t) =>
+    t.tokens.some((token) => token.type === "time")
+  );
+  if (timeSlot) {
+    inAvailableHistogram.set(timeSlot.partId, 1);
+  }
+
+  if (isInShelter) {
+    inShelterHistogram.set("S", 1);
+    inAvailableHistogram.set("S", 1);
+  }
 
   inLocationHistogram.set(locationId, 1);
   inAvailableHistogram.set(locationId, 1);

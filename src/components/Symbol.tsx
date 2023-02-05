@@ -32,7 +32,12 @@ import {
 } from "react-icons/gi";
 import { BsHammer, BsQuestionDiamond } from "react-icons/bs";
 import { AiFillHourglass } from "react-icons/ai";
-import { FaHourglass, FaHourglassEnd, FaHourglassHalf, FaHourglassStart } from "react-icons/fa";
+import {
+  FaHourglass,
+  FaHourglassEnd,
+  FaHourglassHalf,
+  FaHourglassStart,
+} from "react-icons/fa";
 
 export default function Symbol({ children }: { children: string }) {
   switch (children) {
@@ -58,8 +63,7 @@ export default function Symbol({ children }: { children: string }) {
     case "P":
       return <GiCompass title="Player position token" />;
     case "T":
-      return <AiFillHourglass
-       title="Player time token" />;
+      return <AiFillHourglass title="Player time token" />;
     case "X":
       return <GiSpyglass title="Explore for new Locations" />;
     case "M":
@@ -118,12 +122,19 @@ export default function Symbol({ children }: { children: string }) {
     case "C5":
       return <GiChest title="Player chest token" />;
 
+    case "TP1":
+      return <FaHourglassStart title="Morning Time" />;
+    case "TP2":
+      return <FaHourglassHalf title="Day Time" />;
+    case "TP3":
+      return <FaHourglassEnd title="Night Time" />;
     case "T1":
       return <FaHourglassStart title="Dawn" />;
     case "T2":
       return <FaHourglassStart title="Morning" />;
     case "T3":
       return <FaHourglassStart title="Noon" />;
+
     case "T4":
       return <FaHourglassHalf title="Afternoon" />;
     case "T5":

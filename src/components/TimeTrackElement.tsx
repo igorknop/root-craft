@@ -15,7 +15,7 @@ export default function TimeTrackElement() {
             className={slot.tokens?.length > 0 ? styles.selectedSlot : ""}
             key={`slot${slot.time}`}
           >
-            <h1><Symbol>{slot.id}</Symbol></h1>
+            <h1><Symbol>{slot.partId}</Symbol></h1>
             <h2>{slot.label}</h2>
             <div>
               {slot.tokens?.map((token) => (

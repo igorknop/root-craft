@@ -25,15 +25,14 @@
   font-size: 0.5em;
 }
 
-.TimeTrackSlots   h1 {
+.TimeTrackSlots h1 {
   display: flex;
 }
-.TimeTrackSlots   h2 {
+.TimeTrackSlots h2 {
   display: flex;
 }
 
-
-.TimeTrackSlots  div {
+.TimeTrackSlots div {
   grid-column: 1 / 2 span;
   display: flex;
   flex-direction: row;
