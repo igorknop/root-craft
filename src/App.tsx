@@ -53,10 +53,10 @@ function App() {
         <TimeTrackElement />
       </section>
       <section>
-        <h2>Available</h2>
+        <h2>Available Icons</h2>
         <div className={styles.availableList}>
           {Array.from(inAvailable, ([key, value]) => (
-            <div>
+            <div key={`available_${key}_${value}`}>
               <Symbol>{key}</Symbol>
               {value > 1 ? <span>x{value}</span> : null}
             </div>
