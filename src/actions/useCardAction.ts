@@ -40,8 +40,6 @@ function computeHistograms(game: Game, action: Action) {
 
   const isInShelter = locationIdx === shelterIdx;
 
-  console.log("locationIdx", locationIdx, "shelterIdx", shelterIdx);
-
   const inHandHistogram = new Map();
   const inBagHistogram = new Map();
   const inShelterHistogram = new Map();
