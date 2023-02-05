@@ -186,7 +186,18 @@ export const InitialGameState: Game = {
       description: "Silk that can be used to make clothes",
       tokens: [],
       actions: [],
-      unlocks: ["I8"],
+      unlocks: [],
+    },
+    {
+      id: "I8",
+      type: "item",
+      name: "White Meat",
+      description: "White raw meat.",
+      tokens: [],
+      actions: [
+        { consume: ["T"], produce: ["!F"], needs: [] },
+      ],
+      unlocks: [],
     },
   ],
   enemies: [
@@ -198,7 +209,7 @@ export const InitialGameState: Game = {
       tokens: [],
       actions: [
         { consume: [], produce: ["D"], needs: ['M1'] },
-        { consume: ["I2"], produce: ["I7","K"], needs: [] },
+        { consume: ['T'], produce: ["I7","K"], needs: ['I2'] },
       ],
       unlocks: ["I7"],
     },
@@ -212,7 +223,7 @@ export const InitialGameState: Game = {
       tokens: [],
       actions: [
         { consume: [], produce: ["D","D"], needs: ['M2'] },
-        { consume: ["F", "F", "F"], produce: ["D", "I7"], needs: [] },
+        { consume: ['T'], produce: ["D", "I7"], needs: ['I5'] },
       ],
       unlocks: ["I7"],
     },
@@ -224,7 +235,7 @@ export const InitialGameState: Game = {
       tokens: [],
       actions: [
         { consume: [], produce: ["F"], needs: ['M3'] },
-        { consume: ["F", "F", "F"], produce: ["I7",'K'], needs: [] },
+        { consume: ["T", 'I2'], produce: ["I7",'K'], needs: [] },
       ],
       unlocks: ["I7"],
     },

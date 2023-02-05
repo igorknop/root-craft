@@ -146,6 +146,14 @@ export default function useAction(game: Game, action: Action, card: Card) {
 
   newGame = payTime(newGame, histograms.consume.get("T") || 0 + distance);
 
+  //Kill enemy
+  if (histograms.produce.get("K") || (0 > 0 && newGame.enemies.length > 0)) {
+    const idxEnemy = newGame.enemies.findIndex((e: Card) => card.id === e.id);
+    if (idxEnemy >= 0) {
+      newGame.lockedEnemies.push(newGame.enemies.splice(idxEnemy, 1)[0]);
+    }
+  }
+
   //Exploration
   if (
     histograms.produce.get("X") ||
@@ -162,10 +170,22 @@ export default function useAction(game: Game, action: Action, card: Card) {
   if (histograms.produce.get("D") || 0 > 0) {
     newGame.players[0].damage += histograms.produce.get("D") || 0;
   }
+  if (histograms.produce.get("!D") || 0 > 0) {
+    newGame.players[0].damage = Math.max(
+      newGame.players[0].damage - histograms.produce.get("!D") || 0,
+      0
+    );
+  }
 
   //Hunger
   if (histograms.produce.get("F") || 0 > 0) {
     newGame.players[0].hunger += histograms.produce.get("F") || 0;
+  }
+  if (histograms.produce.get("!F") || 0 > 0) {
+    newGame.players[0].hunger = Math.max(
+      newGame.players[0].hunger - histograms.produce.get("!F") || 0,
+      0
+    );
   }
 
   return newGame;
