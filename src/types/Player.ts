@@ -3,6 +3,6 @@ export default interface Player {
   id: number;
   name: string;
   score: number;
-  hungry: number;
+  hunger: number;
   damage: number;
 }

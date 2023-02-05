@@ -31,7 +31,7 @@ function App() {
               <h1>{player.name}</h1>
               <h2>{player.days>1?`${player.days} days.`:'Your first day!'}</h2>
               <div><IconBar max={10} value={player.damage} icon={(<TbHeart />)}/> </div>
-              <div><IconBar max={10} value={player.hungry} icon={(<TbMeat />)}/> </div>
+              <div><IconBar max={10} value={player.hunger} icon={(<TbMeat />)}/> </div>
             </li>
           ))}
         </ul>

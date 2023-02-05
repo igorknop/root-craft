@@ -1,6 +1,7 @@
 import Action from "../types/Action";
 import Card from "../types/Card";
 import Game from "../types/Game";
+import Token from "../types/Token";
 import earnTokens from "./earnTokens";
 import payTime from "./payTime";
 import payTokens from "./payTokens";
@@ -14,7 +15,7 @@ function addOrIncrement(histogram: Map<string, number>, key: string) {
   }
 }
 
-function computeHistograms(game: Game, action: Action) {
+export function computeHistograms(game: Game, action: Action) {
   const consumeHistogram = new Map();
   const needsHistogram = new Map();
   const produceHistogram = new Map();
@@ -82,10 +83,10 @@ function computeHistograms(game: Game, action: Action) {
 }
 
 export default function useAction(game: Game, action: Action, card: Card) {
-  const newGame = structuredClone(game);
+  let newGame = structuredClone(game);
 
   //compute histograms
-  const histograms = computeHistograms(game, action);
+  const histograms = computeHistograms(newGame, action);
 
   //have what is needed?
   let haveWhatIsNeeded = true;
@@ -112,57 +113,60 @@ export default function useAction(game: Game, action: Action, card: Card) {
     return game;
   }
 
-  const newGame2 = unlockItems(newGame, card);
+  newGame = unlockItems(newGame, card);
 
-  const { newCards, unusedTokens } = payTokens(
-    newGame2.items,
-    histograms.consume
-  );
-  newGame2.items = newCards;
-  newGame2.unusedTokens = [...newGame2.unusedTokens, ...unusedTokens].sort();
+  newGame = payTokens(newGame, newGame.items, histograms.consume);
 
-  const ret = earnTokens(newGame2, histograms.produce);
-  newGame2.items = ret.newItems;
-
-  newGame2.unusedTokens = ret.unusedTokens.sort();
+  newGame = earnTokens(newGame, histograms.produce);
 
   let distance = 0;
   //Moviment
-  if (histograms.produce.get("M") || 0 > 0) {
-    const idxLocation = newGame2.places.findIndex((card: Card) =>
+  if ((card.type === "place" && histograms.produce.get("M")) || 0 > 0) {
+    const idxLocation = newGame.places.findIndex((card: Card) =>
       card.tokens.some((token) => token.type === "position")
     );
-    const idxDestination = newGame2.places.findIndex(
-      (destiny: Card) => card.id == destiny.id
+    const idxDestination = newGame.places.findIndex(
+      (destiny: Card) => card.id === destiny.id
     );
     if (idxLocation >= 0 || idxDestination >= 0) {
       distance = Math.abs(idxDestination - idxLocation);
       if (distance === 0) {
         return game;
       }
-      const idxToken = newGame2.places[idxLocation].tokens.findIndex(
-        (token) => token.type === "position"
+      const idxToken = newGame.places[idxLocation].tokens.findIndex(
+        (token: Token) => token.type === "position"
       );
-      const tokens = newGame2.places[idxLocation].tokens.splice(idxToken, 1);
-      newGame2.places[idxDestination].tokens = [
-        ...newGame2.places[idxDestination].tokens,
+      const tokens = newGame.places[idxLocation].tokens.splice(idxToken, 1);
+      newGame.places[idxDestination].tokens = [
+        ...newGame.places[idxDestination].tokens,
         ...tokens,
       ];
     }
   }
-  const newGame3 = payTime(newGame2, histograms.consume.get("T") + distance);
+
+  newGame = payTime(newGame, histograms.consume.get("T") || 0 + distance);
 
   //Exploration
   if (
     histograms.produce.get("X") ||
-    (0 > 0 && newGame3.lockedPlaces.length > 0)
+    (0 > 0 && newGame.lockedPlaces.length > 0)
   ) {
-    const newLocation = newGame3.lockedPlaces.splice(
-      Math.floor(Math.random() * newGame3.lockedPlaces.length),
+    const newLocation = newGame.lockedPlaces.splice(
+      Math.floor(Math.random() * newGame.lockedPlaces.length),
       1
     )[0];
-    newGame3.places.push(newLocation);
+    newGame.places.push(newLocation);
   }
 
-  return newGame3;
+  //Damage
+  if (histograms.produce.get("D") || 0 > 0) {
+    newGame.players[0].damage += histograms.produce.get("D") || 0;
+  }
+
+  //Hunger
+  if (histograms.produce.get("F") || 0 > 0) {
+    newGame.players[0].hunger += histograms.produce.get("F") || 0;
+  }
+
+  return newGame;
 }

@@ -7,7 +7,7 @@ export const InitialGameState: Game = {
       id: 1,
       name: "Player 1",
       score: 0,
-      hungry: 0,
+      hunger: 0,
       damage: 0,
     },
   ],
@@ -189,8 +189,7 @@ export const InitialGameState: Game = {
       unlocks: ["I8"],
     },
   ],
-  enemies: [],
-  lockedEnemies: [
+  enemies: [
     {
       id: "M1",
       type: "enemy",
@@ -198,11 +197,13 @@ export const InitialGameState: Game = {
       description: "A giant spider.",
       tokens: [],
       actions: [
-        { consume: ["D"], produce: [], needs: [] },
-        { consume: ["F", "F", "F"], produce: ["D",'I7'], needs: ["M1"] },
+        { consume: [], produce: ["D"], needs: ['M1'] },
+        { consume: ["I2"], produce: ["I7","K"], needs: [] },
       ],
-      unlocks: ['I7'],
+      unlocks: ["I7"],
     },
+  ],
+  lockedEnemies: [
     {
       id: "M2",
       type: "enemy",
@@ -210,10 +211,10 @@ export const InitialGameState: Game = {
       description: "A giant crab.",
       tokens: [],
       actions: [
-        { consume: ["D"], produce: [], needs: [] },
-        { consume: ["F", "F", "F"], produce: ["D",'I7'], needs: ["M1"] },
+        { consume: [], produce: ["D","D"], needs: ['M2'] },
+        { consume: ["F", "F", "F"], produce: ["D", "I7"], needs: [] },
       ],
-      unlocks: ['I7'],
+      unlocks: ["I7"],
     },
     {
       id: "M3",
@@ -222,10 +223,10 @@ export const InitialGameState: Game = {
       description: "A giant Fly.",
       tokens: [],
       actions: [
-        { consume: ["D"], produce: [], needs: [] },
-        { consume: ["F", "F", "F"], produce: ["D",'I7'], needs: ["M1"] },
+        { consume: [], produce: ["F"], needs: ['M3'] },
+        { consume: ["F", "F", "F"], produce: ["I7",'K'], needs: [] },
       ],
-      unlocks: ['I7'],
+      unlocks: ["I7"],
     },
   ],
 };

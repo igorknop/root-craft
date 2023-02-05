@@ -1,7 +1,8 @@
 import Card from "../types/Card";
+import Game from "../types/Game";
 import Token from "../types/Token";
 
-export default function payTokens(cards: Card[], amount: Map<string, number>) {
+export default function payTokens(game:Game, cards: Card[], amount: Map<string, number>) {
   const newCards = structuredClone(cards);
   const unusedTokens: Token[] = [];
   newCards.forEach((card: Card) => {
@@ -18,5 +19,7 @@ export default function payTokens(cards: Card[], amount: Map<string, number>) {
       }
     }
   });
-  return { newCards, unusedTokens };
+  cards = newCards;
+  game.unusedTokens = game.unusedTokens.concat(unusedTokens).sort();
+  return game;
 }
