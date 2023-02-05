@@ -10,6 +10,7 @@ import IconBar from "./components/IconBar";
 import { TbHeart, TbMeat } from "react-icons/tb";
 import { computeHistograms } from "./actions/useCardAction";
 import Symbol from "./components/Symbol";
+import RootElement from "./components/RootElement";
 
 export const gameAtom = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) =>
@@ -29,6 +30,8 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>Root Craft</h1>
+
+      <RootElement game={game}/>
       <section className={styles.playerList}>
         <h2>Players</h2>
         <ul>

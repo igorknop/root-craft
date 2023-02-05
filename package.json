@@ -9,10 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/react-cytoscapejs": "^1.2.2",
+    "cytoscape": "^3.23.0",
+    "cytoscape-cose-bilkent": "^4.1.0",
+    "cytoscape-ngraph.forcelayout": "^1.4.0",
     "jotai": "^2.0.0",
     "jotai-optics": "^0.3.0",
     "optics-ts": "^2.4.0",
     "react": "^18.2.0",
+    "react-cytoscapejs": "^2.0.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1"
   },
