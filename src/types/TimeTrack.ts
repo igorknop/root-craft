@@ -5,7 +5,8 @@ export interface TimeTrack {
 }
 
 export interface TimeTrackSlot {
+  id: string;
   time: number;
   label: string;
-  tokens:Token[];
+  tokens: Token[];
 }

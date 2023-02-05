@@ -4,18 +4,19 @@ export const InitialGameState: Game = {
   days: 1,
   state: "playing",
   timeTrack: [
-    { time: 1, label: "Dawn", tokens: [] },
-    { time: 2, label: "Morning", tokens: [] },
+    { time: 1, id: "T1", label: "Dawn", tokens: [] },
+    { time: 2, id: "T2", label: "Morning", tokens: [] },
     {
       time: 3,
+      id: "T3",
       label: "Noon",
       tokens: [{ id: "T", type: "time", name: "Player 1 Position", player: 1 }],
     },
-    { time: 4, label: "Afternoon", tokens: [] },
-    { time: 5, label: "Dusk", tokens: [] },
-    { time: 6, label: "Evening", tokens: [] },
-    { time: 7, label: "Midnight", tokens: [] },
-    { time: 8, label: "Night", tokens: [] },
+    { time: 4, id: "T4", label: "Afternoon", tokens: [] },
+    { time: 5, id: "T5", label: "Dusk", tokens: [] },
+    { time: 6, id: "T6", label: "Evening", tokens: [] },
+    { time: 7, id: "T7", label: "Midnight", tokens: [] },
+    { time: 8, id: "T8", label: "Night", tokens: [] },
   ],
   unusedTokens: [
     { id: "T", type: "time", name: "Player 1 Time", player: 1 },
@@ -56,54 +57,53 @@ export const InitialGameState: Game = {
       ],
       actions: [
         { consume: ["T"], produce: ["I1"], needs: [] },
-        { consume: ['T','T','T'], produce: ["X"], needs: [] },
+        { consume: ["T", "T", "T"], produce: ["X"], needs: [] },
         { consume: ["T"], produce: ["M"], needs: [] },
       ],
-      unlocks: ["I1"],
+      unlocks: [],
     },
+    
+  ],
+  items: [],
+  lockedPlaces: [
     {
-      id: "F1",
+      id: "L1",
       type: "place",
       name: "The Forest",
       description: "A dark and foreboding forest.",
       tokens: [],
       actions: [
         { consume: ["T", "T", "T"], produce: ["I1"], needs: [] },
-        { consume: ["T", 'T','T'], produce: ["X"], needs: [] },
-        { consume: ["T", 'T'], produce: ["M"], needs: [] },
+        { consume: ["T", "T", "T"], produce: ["X"], needs: [] },
+        { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I1"],
     },
-  ],
-  items: [],
-  lockedPlaces: [
     {
-      id: "F2",
+      id: "L2",
       type: "place",
       name: "The Moutain",
       description: "A rocky step stone wall.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T",'T'], produce: ["I3"], needs: [] },
-        { consume: ["T", 'T'], produce: ["M"], needs: [] },
-
+        { consume: ["T", "T", "T", "T"], produce: ["I3"], needs: [] },
+        { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I4"],
     },
     {
-      id: "F3",
+      id: "L3",
       type: "place",
       name: "The Dark Forest",
       description: "No sunlight reaches this forest.",
       tokens: [],
       actions: [
         { consume: ["T", "T", "T"], produce: ["I1"], needs: [] },
-        { consume: ["T", 'T','T'], produce: ["X"], needs: [] },
-        { consume: ["T", 'T'], produce: ["M"], needs: [] },
+        { consume: ["T", "T", "T"], produce: ["X"], needs: [] },
+        { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I1"],
     },
-      
   ],
   lockedItems: [
     {

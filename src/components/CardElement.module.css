@@ -12,6 +12,7 @@
   transition: all 0.3s ease-out;
   zoom: 0.6;
   overflow: visible;
+  font-size: 5mm;
 }
 
 .Card[data-type="place"] {

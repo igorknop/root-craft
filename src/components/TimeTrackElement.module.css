@@ -8,11 +8,13 @@
   width: 100%;
   list-style: none;
   gap: 0.5em;
+  font-size: 3mm;
 }
 
 .TimeTrackSlots > li {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 2fr;
   justify-content: center;
   align-items: center;
   padding: 0.5em;
@@ -20,6 +22,23 @@
   border: 1px solid #000;
   box-sizing: border-box;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  font-size: 0.5em;
+}
+
+.TimeTrackSlots   h1 {
+  display: flex;
+}
+.TimeTrackSlots   h2 {
+  display: flex;
+}
+
+
+.TimeTrackSlots  div {
+  grid-column: 1 / 2 span;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .TimeTrackSlots > li.selectedSlot {
