@@ -1,16 +1,15 @@
 import styles from "./App.module.css";
-import Card from "./types/Card";
-import CardElement from "./components/CardElement";
-import TokenElement from "./components/TokenElement";
+import Card from "../types/Card";
+import CardElement from "../components/CardElement";
+import TokenElement from "../components/TokenElement";
 import { atom, useAtom } from "jotai";
-import { InitialGameState } from "./InitialGameState";
-import TimeTrackElement from "./components/TimeTrackElement";
+import { InitialGameState } from "../InitialGameState";
+import TimeTrackElement from "../components/TimeTrackElement";
 import { focusAtom } from "jotai-optics";
-import IconBar from "./components/IconBar";
+import IconBar from "../components/IconBar";
 import { TbHeart, TbMeat } from "react-icons/tb";
-import { computeHistograms } from "./actions/useCardAction";
-import Symbol from "./components/Symbol";
-import RootElement from "./components/RootElement";
+import { computeHistograms } from "../actions/useCardAction";
+import Symbol from "../components/Symbol";
 
 export const gameAtom = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) =>
@@ -31,7 +30,6 @@ function App() {
     <div className={styles.App}>
       <h1>Root Craft</h1>
 
-      <RootElement game={game}/>
       <section className={styles.playerList}>
         <h2>Players</h2>
         <ul>

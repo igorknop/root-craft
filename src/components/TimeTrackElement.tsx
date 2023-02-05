@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { gameAtom, timeTrackAtom } from "../App";
+import { gameAtom, timeTrackAtom } from "../screens/App";
 import { TimeTrackSlot } from "../types/TimeTrack";
 import Symbol from "./Symbol";
 import styles from "./TimeTrackElement.module.css";

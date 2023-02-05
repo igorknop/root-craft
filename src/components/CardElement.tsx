@@ -4,7 +4,7 @@ import styles from "./CardElement.module.css";
 import TokenElement from "./TokenElement";
 import { FaUnlockAlt } from "react-icons/fa";
 import useCardAction from "../actions/useCardAction";
-import { gameAtom } from "../App";
+import { gameAtom } from "../screens/App";
 import { useAtom } from "jotai";
 import Symbol from "./Symbol";
 

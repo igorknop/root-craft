@@ -23,7 +23,7 @@ interface EdgeElement {
   };
 }
 
-export default function RootElement({ game }: { game: Game }) {
+export default function RootElement() {
   const elements: Array<NodeElement | EdgeElement> = [
     // { data: { id: "type_items", label: "Items", type: "item" } },
     // { data: { id: "type_locations", label: "Locations", type: "place" } },
