@@ -25,9 +25,9 @@ interface EdgeElement {
 
 export default function RootElement({ game }: { game: Game }) {
   const elements: Array<NodeElement | EdgeElement> = [
-    { data: { id: "type_items", label: "Items", type: "item" } },
-    { data: { id: "type_locations", label: "Locations", type: "place" } },
-    { data: { id: "type_enemies", label: "Enemies", type: "enemy" } },
+    // { data: { id: "type_items", label: "Items", type: "item" } },
+    // { data: { id: "type_locations", label: "Locations", type: "place" } },
+    // { data: { id: "type_enemies", label: "Enemies", type: "enemy" } },
   ];
 
   const data = InitialGameState;
@@ -35,40 +35,40 @@ export default function RootElement({ game }: { game: Game }) {
     elements.push({
       data: { id: place.id, label: place.name, type: place.type },
     });
-    elements.push({
-      data: {
-        source: "type_locations",
-        target: place.id,
-        label: "is_location",
-        type: "is_location",
-      },
-    });
+    // elements.push({
+    //   data: {
+    //     source: "type_locations",
+    //     target: place.id,
+    //     label: "is_location",
+    //     type: "is_location",
+    //   },
+    // });
   });
 
   data.items.forEach((item) => {
     elements.push({ data: { id: item.id, label: item.name, type: item.type } });
-    elements.push({
-      data: {
-        source: "type_items",
-        target: item.id,
-        label: "is_item",
-        type: "is_item",
-      },
-    });
+    // elements.push({
+    //   data: {
+    //     source: "type_items",
+    //     target: item.id,
+    //     label: "is_item",
+    //     type: "is_item",
+    //   },
+    // });
   });
 
   data.enemies.forEach((enemy) => {
     elements.push({
       data: { id: enemy.id, label: enemy.name, type: enemy.type },
     });
-    elements.push({
-      data: {
-        source: "type_enemies",
-        target: enemy.id,
-        label: "is_enemy",
-        type: "is_enemy",
-      },
-    });
+    // elements.push({
+    //   data: {
+    //     source: "type_enemies",
+    //     target: enemy.id,
+    //     label: "is_enemy",
+    //     type: "is_enemy",
+    //   },
+    // });
   });
 
   data.items.forEach((item) => {
@@ -79,6 +79,23 @@ export default function RootElement({ game }: { game: Game }) {
           target: unlock,
           label: "unlocks",
           type: "unlocks",
+        },
+      });
+    });
+    item.actions.forEach((action,a) => {
+      elements.push({
+        data: {
+          id: `${item.id}_act_${a}`,
+          label: `${item.id}_act_${a}`,
+          type: "action",
+        },
+      });
+      elements.push({
+        data: {
+          source: item.id,
+          target: `${item.id}_act_${a}`,
+          label: "is_action",
+          type: "action",
         },
       });
     });
@@ -121,15 +138,22 @@ export default function RootElement({ game }: { game: Game }) {
           selector: "node",
           style: {
             label: function (e) {
-              return `${e.data("id")}: ${e.data("label")}`;
+              return ` ${e.data("id")}\n${e.data("label")} `;
             },
-            "text-valign": "top",
+            width: "label",
+            "text-valign": "center",
             "text-halign": "center",
             shape: "rectangle",
             "background-color": "lightblue",
             "border-color": "black",
             "border-style": "solid",
             "border-width": 1,
+            "font-size": 8,
+            "text-wrap": "wrap",
+            "text-max-width": "100px",
+            "padding-left": "2px",
+            "padding-right": "2px",
+
           },
         },
         {
@@ -160,6 +184,13 @@ export default function RootElement({ game }: { game: Game }) {
           style: {
             shape: "rectangle",
             "background-color": "lightpink",
+          },
+        },
+        {
+          selector: "node[type='action']",
+          style: {
+            shape: "ellipse",
+            "background-color": "lightgray",
           },
         },
         {
