@@ -138,10 +138,10 @@ export default function useAction(game: Game, action: Action, card: Card) {
       (destiny: Card) => card.id == destiny.id
     );
     if (idxLocation >= 0 || idxDestination >= 0) {
+      distance = Math.abs(idxDestination - idxLocation);
       if (distance === 0) {
         return game;
       }
-      distance = Math.abs(idxDestination - idxLocation);
       const idxToken = newGame2.places[idxLocation].tokens.findIndex(
         (token) => token.type === "position"
       );
