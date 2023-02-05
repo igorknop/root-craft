@@ -83,7 +83,7 @@ function App() {
           <CardElement card={itemCard as Card} key={itemCard.id} />
         ))}
       </section>
-      <section>
+      <section style={{ display: "none" }}>
         <h2>Unused Tokens</h2>
         <div className={styles.tokenList}>
           {game.unusedTokens.map((token) => (

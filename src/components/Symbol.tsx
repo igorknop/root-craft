@@ -106,6 +106,9 @@ export default function Symbol({ children }: { children: string }) {
     case "B3":
     case "B4":
     case "B5":
+    case "B6":
+    case "B7":
+    case "B8":
       return <GiLightBackpack title="Player backpack token" />;
 
     case "S1":
