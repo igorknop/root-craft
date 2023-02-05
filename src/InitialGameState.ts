@@ -144,7 +144,7 @@ export const InitialGameState: Game = {
       actions: [
         { consume: ["T", "T", "I1", "I1"], produce: ["I4"], needs: [] },
       ],
-      unlocks: ["I3"],
+      unlocks: ["I4"],
     },
     {
       id: "I4",
@@ -153,7 +153,6 @@ export const InitialGameState: Game = {
       description: "A sturdy wooden table.",
       tokens: [],
       actions: [
-        { consume: ["T", "I1", "I2"], produce: ["I5"], needs: ["I3", "I4"] },
         { consume: ["T", "I1", "I2"], produce: ["I5"], needs: ["I3", "I4"] },
       ],
       unlocks: ["I5"],

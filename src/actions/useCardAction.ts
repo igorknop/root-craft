@@ -115,7 +115,7 @@ export default function useAction(game: Game, action: Action, card: Card) {
 
   newGame = unlockItems(newGame, card);
 
-  newGame = payTokens(newGame, newGame.items, histograms.consume);
+  newGame = payTokens(newGame, histograms.consume);
 
   newGame = earnTokens(newGame, histograms.produce);
 
