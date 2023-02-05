@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <div>
+    <main>
       <h1>Root Craft</h1>
       <p>
         In Root Craft you are a frogman trying to survive in a fantastic
@@ -38,6 +38,7 @@ export default function About() {
           </dd>
         </div>
       </dl>
-    </div>
+      <nav><Link to="/">Back to Main Menu</Link>.</nav>
+    </main>
   );
 }

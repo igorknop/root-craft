@@ -4,6 +4,7 @@ import CytoscapeComponent from "react-cytoscapejs";
 import { InitialGameState } from "../InitialGameState";
 import Game from "../types/Game";
 import styles from "./RootElement.module.css";
+import { Link } from "react-router-dom";
 
 Cytoscape.use(COSEBilkent);
 
@@ -404,6 +405,7 @@ export default function RootElement() {
           },
         ]}
       />
+    <nav><Link to="/">Back to Main Menu</Link>.</nav>
     </main>
   );
 }
