@@ -12,6 +12,7 @@ import { computeHistograms } from "../actions/useCardAction";
 import Symbol from "./Symbol";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import NavMenu from "../components/NavMenu";
 
 export const gameAtom = atom(InitialGameState);
 export const timeTrackAtom = focusAtom(gameAtom, (optic) =>
@@ -29,7 +30,7 @@ function App() {
   const { inAvailable } = computeHistograms(game);
 
   return (
-    <div className={styles.App}>
+    <main className={styles.App}>
       <h1>Root Craft</h1>
       <section className={styles.playerList}>
         <h2>Players</h2>
@@ -109,7 +110,8 @@ function App() {
           ))}
         </div>
       </section>
-    </div>
+      <NavMenu />
+    </main>
   );
 }
 

@@ -7,6 +7,7 @@ import MainMenu from "./screens/MainMenu";
 import RootElement from "./screens/RootElement";
 import About from "./screens/About";
 import Scoring from "./screens/Scoring";
+import HowToPlay from "./screens/HowToPlay";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +15,12 @@ const router = createBrowserRouter([
     element: <MainMenu />,
   },
   {
-    path: "/techtree",
+    path: "/tech-tree",
     element: <RootElement />,
+  },
+  {
+    path: "/how-to-play",
+    element: <HowToPlay />,
   },
   {
     path: "/scoring",

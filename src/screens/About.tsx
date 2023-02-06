@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import NavMenu from "../components/NavMenu";
 
 export default function About() {
   return (
@@ -23,7 +24,7 @@ export default function About() {
       </p>
 
       <h2>Diversifiers</h2>
-      <dl>
+      <dl style={{textAlign:"left"}}>
         <div>
           <dt>Sharing Is Caring (Sponsored by GitHub)</dt>
           <dd>
@@ -31,14 +32,13 @@ export default function About() {
             repository and list the URL on your submission page.
           </dd>
           <dd>
-            Source Code:{" "}
             <a href="https://github.com/igorknop/root-craft">
-              https://github.com/igorknop/root-craft
+              Source Code on GitHub
             </a>
           </dd>
         </div>
       </dl>
-      <nav><Link to="/">Back to Main Menu</Link>.</nav>
+      <NavMenu />
     </main>
   );
 }

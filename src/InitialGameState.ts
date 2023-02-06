@@ -84,9 +84,9 @@ export const InitialGameState: Game = {
       description: "A dark and foreboding forest.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T"], produce: ["I1"], needs: ["L2"] },
+        { consume: ["T", "T"], produce: ["I1"], needs: ["L2"] },
         { consume: ["T", "T", "T"], produce: ["X"], needs: ["L2"] },
-        { consume: ["T", "T"], produce: ["M"], needs: [] },
+        { consume: ["T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I1"],
     },
@@ -97,7 +97,7 @@ export const InitialGameState: Game = {
       description: "A rocky step stone wall.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T", "T"], produce: ["I3"], needs: ["L3"] },
+        { consume: ["T", "T"], produce: ["I3"], needs: ["L3"] },
         { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
       unlocks: ["I4"],
@@ -109,7 +109,7 @@ export const InitialGameState: Game = {
       description: "No sunlight reaches this forest.",
       tokens: [],
       actions: [
-        { consume: ["T", "T", "T"], produce: ["I1"], needs: ["L4"] },
+        { consume: ["T", "T"], produce: ["I1"], needs: ["L4"] },
         { consume: ["T", "T", "T"], produce: ["X"], needs: ["L4"] },
         { consume: ["T", "T"], produce: ["M"], needs: [] },
       ],
@@ -136,7 +136,7 @@ export const InitialGameState: Game = {
       description: "A small pebble.",
       tokens: [],
       actions: [{ consume: ["T"], produce: ["I2"], needs: [] }],
-      unlocks: ["I3"],
+      unlocks: ['I5'],
     },
 
     {
