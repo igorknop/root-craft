@@ -2,9 +2,7 @@ import Cytoscape from "cytoscape";
 import COSEBilkent from "cytoscape-cose-bilkent";
 import CytoscapeComponent from "react-cytoscapejs";
 import { InitialGameState } from "../InitialGameState";
-import Game from "../types/Game";
-import styles from "./RootElement.module.css";
-import { Link } from "react-router-dom";
+import styles from "./TechTree.module.css";
 import NavMenu from "../components/NavMenu";
 
 Cytoscape.use(COSEBilkent);
@@ -25,7 +23,7 @@ interface EdgeElement {
   };
 }
 
-export default function RootElement() {
+export default function TechTree() {
   const elements: Array<NodeElement | EdgeElement> = [
     // { data: { id: "type_items", label: "Items", type: "item" } },
     // { data: { id: "type_locations", label: "Locations", type: "place" } },
@@ -201,7 +199,7 @@ export default function RootElement() {
       });
     });
     enemy.actions.forEach((action, a) => {
-      const actionID = `${enemy.id}_act_${a}`;
+      const actionID = `${enemy.id}_${a}`;
       elements.push({
         data: {
           id: actionID,
@@ -315,6 +313,10 @@ export default function RootElement() {
           {
             selector: "node[type='action']",
             style: {
+              "font-size": 4,
+              height: 8,
+              width: 8,
+              "border-color": "darkgray",
               shape: "ellipse",
               "background-color": "lightgray",
             },
@@ -390,7 +392,7 @@ export default function RootElement() {
               "line-fill": "solid",
               color: "green",
               "target-arrow-shape": "triangle",
-              "line-color": "data(color)",
+              "line-color": "green",
               "target-arrow-color": "green",
             },
           },

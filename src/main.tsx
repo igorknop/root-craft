@@ -4,10 +4,10 @@ import App from "./screens/App";
 import "./index.css";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import MainMenu from "./screens/MainMenu";
-import RootElement from "./screens/RootElement";
 import About from "./screens/About";
 import Scoring from "./screens/Scoring";
 import HowToPlay from "./screens/HowToPlay";
+import TechTree from "./screens/TechTree";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/tech-tree",
-    element: <RootElement />,
+    element: <TechTree />,
   },
   {
     path: "/how-to-play",
