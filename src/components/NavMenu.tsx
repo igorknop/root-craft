@@ -5,6 +5,9 @@ export default function NavMenu() {
     <nav>
       <ul>
         <li>
+          <Link to={"/"}>Main Menu</Link>
+        </li>
+        <li>
           <Link to={"/play"}>Play!</Link>
         </li>
         <li>

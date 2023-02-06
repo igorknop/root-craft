@@ -5,6 +5,7 @@ import { InitialGameState } from "../InitialGameState";
 import Game from "../types/Game";
 import styles from "./RootElement.module.css";
 import { Link } from "react-router-dom";
+import NavMenu from "../components/NavMenu";
 
 Cytoscape.use(COSEBilkent);
 
@@ -30,7 +31,7 @@ export default function RootElement() {
     // { data: { id: "type_locations", label: "Locations", type: "place" } },
     // { data: { id: "type_enemies", label: "Enemies", type: "enemy" } },
   ];
-  
+
   const data = InitialGameState;
   const allPlaces = [...data.places, ...data.lockedPlaces];
   const allItems = [...data.items, ...data.lockedItems];
@@ -248,6 +249,8 @@ export default function RootElement() {
 
   return (
     <main>
+      <h1>Root Craft</h1>
+      <h2>Tech Tree</h2>
       <CytoscapeComponent
         elements={elements}
         className={styles.RootElement}
@@ -405,7 +408,8 @@ export default function RootElement() {
           },
         ]}
       />
-    <nav><Link to="/">Back to Main Menu</Link>.</nav>
+
+      <NavMenu />
     </main>
   );
 }
